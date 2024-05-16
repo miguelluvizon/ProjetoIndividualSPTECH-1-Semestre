@@ -5,6 +5,10 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+body {
+    background-color: black;
+}
+
 header {
     width: 100%;
     min-height: 100vh;
@@ -78,8 +82,9 @@ nav .active:hover {
     width: 90%;
     justify-content: space-between;
     color: white;
-    /* align-items: center; */
+    align-items: center;
     margin: auto;
+    border-bottom: 3px solid rgb(59, 59, 59) ;
 }
 
 .container img {
@@ -90,7 +95,7 @@ nav .active:hover {
 
 .container h1 {
     color: blueviolet;
-    font-weight: 700;
+    font-weight: bold;
     font-size: 55px;
     padding-bottom: 30px;
 }
@@ -107,4 +112,145 @@ nav .active:hover {
 .container h4 {
     font-size: 20px;
     padding-bottom: 10px;
+    margin-right: 15px;
 }
+
+.sobremim {
+    display: flex;
+    width: 90%;
+    height: 540px;
+    background-color: rgb(0, 0, 0);
+    margin: auto;
+    color: white;
+    border-bottom: 3px solid rgb(59, 59, 59) ;
+}
+
+.sobremim .fotosonic img {
+    margin: 50px 0px;
+    width: 500px;
+    height: 440px;
+    border: 10px solid purple;
+}
+
+.sobremim .text {
+    align-items: center;
+    font-size: 20px;
+    height: 80%;
+    margin-left: 60px;
+    margin-top: 50px;
+    background-color: rgba(128, 0, 128, 0.205);
+    padding: 20px 20px;
+    border: 3px solid white;
+    border-radius: 10px;
+}
+
+.sobremim .text h1 {
+    margin-bottom: 15px;
+}
+
+.titulofama h1 {
+    display: flex;
+    color: blueviolet;
+    width: 90%;
+    font-size: 40px;
+    justify-content: center;
+    margin: 30px 0px 0px 60px ;
+}
+
+.famosos {
+    background-color: rgb(0, 0, 0);
+    width: 90%;
+    margin: auto;
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    border-bottom: 3px solid rgb(59, 59, 59) ;
+    margin-bottom: 60px;
+}
+
+.famosos h4 {
+    color: chocolate;
+    margin-bottom: 15px;
+}
+
+.card {
+    width: 350px;
+    text-align: center; 
+    border: 3px solid white;
+    padding: 10px 10px;
+    border-radius: 15px;
+    background-color: rgba(128, 0, 128, 0.205);
+    margin-bottom: 50px;
+}
+
+.card img {
+    width: 100%;
+    margin-bottom: 10px;
+    height: 300px;
+}
+
+.card h4 {
+    font-size: 24px;
+}
+
+.card img {
+    border-radius: 25px;
+}
+
+.historia {
+    display: flex;
+    width: 90%;
+    height: 800px;
+    background-color: rgb(0, 0, 0);
+    margin: auto;
+    color: white;
+    justify-content: space-around;
+    border-bottom: 3px solid rgb(59, 59, 59);
+}
+
+.historia h1 {
+    font-size: 40px;
+    color: blueviolet;
+}
+
+.historia .text {
+    background-color: rgba(128, 0, 128, 0.205);
+    padding: 20px 20px;
+    border: 3px solid white;
+    border-radius: 20px;
+    height: 700px;
+    width: 50%;
+} 
+
+.historia img {
+    border: 10px solid purple;
+    height: 700px;
+    width: 400px;
+}
+
+.historia p {
+    margin-top: 30px;
+    font-size: 20px;
+}
+
+.footer {
+    height: 200px;
+    background-color: purple;
+}
+
+.convite {
+    display: flex;
+    width: 90%;
+    margin: auto;
+    color: white;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.convite h1 {
+font-size: 40px;
+width: 50%;
+margin-left: 55px;
+}
+
