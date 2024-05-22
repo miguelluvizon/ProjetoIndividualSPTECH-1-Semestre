@@ -32,6 +32,11 @@ header {
     height: 70px;
 }
 
+.logo:hover {
+    transform: scale(1.1);
+    transition: 0.3s ease;
+}
+
 nav {
     display: flex;
     justify-content: space-between;
@@ -198,6 +203,11 @@ nav .active:hover {
     border-radius: 25px;
 }
 
+.card:hover {
+    transform: scale(1.05);
+    transition: 0.3s ease;
+}
+
 .historia {
     display: flex;
     width: 90%;
@@ -235,8 +245,10 @@ nav .active:hover {
 }
 
 .footer {
+    margin-top: 10px;
     height: 200px;
-    background-color: purple;
+    background-color: rgb(65, 1, 65);
+    border-top: 10px solid rgb(30, 1, 34);
 }
 
 .convite {
@@ -252,5 +264,8 @@ nav .active:hover {
 font-size: 40px;
 width: 50%;
 margin-left: 55px;
+background-color: rgba(128, 0, 128, 0.205);
+padding: 10px;
+border-radius: 20px;
 }
 
