@@ -12,4 +12,22 @@ router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
 
+router.post("/jogarbanco", function (req, res) {
+    usuarioController.jogarbanco(req, res);
+});
+
+router.post("/usuarioquiz", function (req, res) {
+    usuarioController.usuarioquiz(req, res);
+});
+
+router.get("/quizdados", function (req, res) {
+    usuarioController.quizdados(req, res);
+});
+
+router.get("/quizdadostemporeal", function (req, res) {
+    usuarioController.quizdadostemporeal(req, res);
+});
+
+
+
 module.exports = router;

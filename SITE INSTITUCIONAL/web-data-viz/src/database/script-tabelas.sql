@@ -28,14 +28,19 @@ fkperfilgamer int,
 constraint fkperfilgamerusuario foreign key (fkperfilgamer) references perfilgamer (idperfilgamer)
 );
 
-create table postagem (
-idpostagem int primary key auto_increment,
-titulo varchar(45),
-descricao varchar(255),
-dthora datetime,
+create table quiz (
+idquiz int primary key auto_increment,
 fkusuario int,
-constraint fkusuariopostagem foreign key (fkusuario) references usuario (idusuario)
+foreign key (fkusuario) references usuario (idusuario)
 );
 
--- insert into empresa (razao_social, cnpj) values ('Empresa 1', '00000000000000');
--- insert into aquario (descricao, fk_empresa) values ('Aquário de Estrela-do-mar', 1);
+create table resposta (
+fkquiz int,
+resp1 int,
+resp2 int,
+resp3 int,
+resp4 int,
+resp5 int,
+resp6 int,
+constraint fkrespostaquiz foreign key(fkquiz) references quiz (idquiz)
+);

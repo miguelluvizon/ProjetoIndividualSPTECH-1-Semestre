@@ -6,23 +6,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaTech | Dashboards</title>
+    <title>Gamestudy | QUIZ</title>
 
 
     <link rel="stylesheet" href="./../css/dashboards.css">
     <link rel="stylesheet" href="./../css/estilo.css" />
     <script src="../js/sessao.js"></script>
-    <script src="./../js/alerta.js"></script>
+    <!-- <script src="./../js/alerta.js"></script> -->
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
 
-    <!-- scripts do Chart.js - 2022-1 -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <!--FONT AWESOME-->
+    
     <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
 </head>
 
@@ -32,292 +31,372 @@
 
     <div class="janela">
         <div class="header-left">
-            <h1>AquaTech</h1>
+            <img src="../css/imagens/logo (1).png">
+            <h1>Gamestudy</h1>
 
             <div class="hello">
-                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
-            </div>
-
-            <div class="hello">
-                <h3><span id="b_cpf">cpf</span>!</h3>
+                <h3>Seja bem vindo, <span id="b_usuario">usuário</span>!</h3>
             </div>
 
             <div class="btn-nav-white">
                 <a href="./cards.html">
-                    <h3>Aquários</h3>
+                    <h3>Tela inicial</h3>
                 </a>
             </div>
-            
+
             <div class="btn-nav">
 
-                <h3>Gráficos</h3>
+                <h3>Quiz</h3>
 
             </div>
 
             <div class="btn-nav-white">
                 <a href="./mural.html">
-                    <h3>Mural de Avisos</h3>
+                    <h3>perfil</h3>
                 </a>
             </div>
 
-            <div class="btn-logout" onclick="limparSessao()">
-                <h3>Sair</h3>
-            </div>
 
-        </div>
 
-        <div class="dash">
-            <div id="alerta">
-            </div>
-
-            <div class="btns-dash" id="btnAquario">
-                <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
-            </div>
-            <div id="graficos">
+            <div class="btn-logout">
+                <a href="./../index.html">
+                    <h3>Sair</h3>
+                </a>
             </div>
         </div>
     </div>
 
+    <div class="dash">
+        <div class="painelquiz">
+            <div id="inicarQuiz">
+                <h1>Quiz de jogos</h1>
+                <p>Bora testar seus conhecimentos?</p>
+                <button onclick="iniciar()">Iniciar</button>
+            </div>
+            <div class="perguntasquiz">
+                <div id="perg1" style="display: none;">
+                    <h1>Qual a cor do personagem sonic?</h1>
+                    <input type="radio" id="perg1A" onclick="verificar()"> azul
+                    <input type="radio" id="perg1B" onclick="verificar()"> vermelho
+                    <input type="radio" id="perg1C" onclick="verificar()"> laranja
+                    <input type="radio" id="perg1D" onclick="verificar()"> amarelo
+                </div>
+                <div id="perg2" style="display: none;">
+                    <h1>De qual jogo é o personagem Scorpion, o ninja amarelo?</h1>
+                    <input type="radio" id="perg2A" onclick="verificar()"> Mortal Kombat
+                    <input type="radio" id="perg2B" onclick="verificar()"> Street Fighter
+                    <input type="radio" id="perg2C" onclick="verificar()"> Tekken
+                    <input type="radio" id="perg2D" onclick="verificar()"> King of Fighters
+                </div>
+                <div id="perg3" style="display: none;">
+                    <h1>Quem é o rival do personagem ryu do street fighter?</h1>
+                    <input type="radio" id="perg3A" onclick="verificar()"> Ken
+                    <input type="radio" id="perg3B" onclick="verificar()"> Sagat
+                    <input type="radio" id="perg3C" onclick="verificar()"> Akuma
+                    <input type="radio" id="perg3D" onclick="verificar()"> Bison
+                </div>
+                <div id="perg4" style="display: none;">
+                    <h1>Quem é o irmao do personagem mario?</h1>
+                    <input type="radio" id="perg4A" onclick="verificar()"> Bowser
+                    <input type="radio" id="perg4B" onclick="verificar()"> Toad
+                    <input type="radio" id="perg4C" onclick="verificar()"> Wario
+                    <input type="radio" id="perg4D" onclick="verificar()"> Luigi
+                </div>
+                <div id="perg5" style="display: none;">
+                    <h1> Qual o nome do protagonista de The witcher?</h1>
+                    <input type="radio" id="perg5A" onclick="verificar()"> Eredin
+                    <input type="radio" id="perg5B" onclick="verificar()"> Geralt
+                    <input type="radio" id="perg5C" onclick="verificar()"> Regis
+                    <input type="radio" id="perg5D" onclick="verificar()"> Vesemir
+                </div>
+                <div id="perg6" style="display: none;">
+                    <h1>Qual o jogo do sonic onde ele se transforma em um lobisomem?</h1>
+                    <input type="radio" id="perg6A" onclick="verificar()"> Sonic frontiers
+                    <input type="radio" id="perg6B" onclick="verificar()"> Sonic unleashed
+                    <input type="radio" id="perg6C" onclick="verificar()"> Sonic forces
+                    <input type="radio" id="perg6D" onclick="verificar()"> Sonic rush
+                </div>
+                <div id="perg7" style="display: none;">
+                    <h1>Qual foi a primeira rivalidade de mascotes do mundo dos jogos?</h1>
+                    <input type="radio" id="perg7A" onclick="verificar()"> sonic & mario
+                    <input type="radio" id="perg7B" onclick="verificar()"> mario & link
+                    <input type="radio" id="perg7C" onclick="verificar()"> sonic & starfox
+                    <input type="radio" id="perg7D" onclick="verificar()"> goku & vegeta
+                </div>
+                <div id="perg8" style="display: none;">
+                    <h1>Quando foi que o minecraft foi lançado?</h1>
+                    <input type="radio" id="perg8A" onclick="verificar()"> 2011
+                    <input type="radio" id="perg8B" onclick="verificar()"> 2012
+                    <input type="radio" id="perg8C" onclick="verificar()"> 2015
+                    <input type="radio" id="perg8D" onclick="verificar()"> Ontem
+                </div>
+                <div id="perg9" style="display: none;">
+                    <h1>Qual o nome da franquia de jogos onde tudo é feito de peças?</h1>
+                    <input type="radio" id="perg9A" onclick="verificar()"> kogama
+                    <input type="radio" id="perg9B" onclick="verificar()"> gta V
+                    <input type="radio" id="perg9C" onclick="verificar()"> lego
+                    <input type="radio" id="perg9D" onclick="verificar()"> pong
+                </div>
+                <div id="perg10" style="display: none;">
+                    <h1>Quantos jogos tem a franquia FNAF?</h1>
+                    <input type="radio" id="perg10A" onclick="verificar()"> 3
+                    <input type="radio" id="perg10B" onclick="verificar()"> 10
+                    <input type="radio" id="perg10C" onclick="verificar()"> 8
+                    <input type="radio" id="perg10D" onclick="verificar()"> 7
+                </div>
 
+                <div id="resultadoquiz"></div>
+            </div>
+        </div>
+        <div id="graficos">
+        </div>
+    </div>
+    </div>
+    </div>
 </body>
 
 </html>
 
 <script>
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-    b_cpf.innerHTML = sessionStorage.CPF;
-
     let proximaAtualizacao;
 
-    window.onload = exibirAquariosDoUsuario();
 
-    function exibirAquariosDoUsuario() {
-        var aquarios = JSON.parse(sessionStorage.AQUARIOS);
-        aquarios.forEach(item => {
-            document.getElementById("btnAquario").innerHTML += `
-            <button class="btn-chart" onclick="exibirAquario(${item.id})" id="btnAquario${item.id}">${item.descricao}</button>
-            `
+    var questao_atual = 1;
+    var pontuacao_acertos = 0;
+    var pontuacao_erros = 0;
 
-            document.getElementById("graficos").innerHTML += `
-                <div id="grafico${item.id}" class="display-none">
-                    <h3 class="tituloGraficos">
-                        <span id="tituloAquario${item.id}">${item.descricao}</span>
-                    </h3>
-                    <div class="graph">
-                        <canvas id="myChartCanvas${item.id}"></canvas>
-                    </div>
-                    <div class="label-captura">
-                        <p id="avisoCaptura${item.id}" style="color: white"></p>
-                    </div>
-                </div>
-            `
+    var certasdash = 0;
+    var erradasdash = 0;
 
-            obterDadosGrafico(item.id)
-        });
 
-        if (aquarios.length > 0) {
-            exibirAquario(aquarios[0].id)
-        }
+
+    function iniciar() {
+        document.getElementById('inicarQuiz').style.display = 'none'
+        document.getElementById('perg1').style.display = 'block'
     }
 
-    function alterarTitulo(idAquario) {
-        var tituloAquario = document.getElementById(`tituloAquario${idAquario}`)
-        var descricao = JSON.parse(sessionStorage.AQUARIOS).find(item => item.id == idAquario).descricao;
-        tituloAquario.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>" + descricao + "</span>"
-    }
-
-    function exibirAquario(idAquario) {
-        let todosOsGraficos = JSON.parse(sessionStorage.AQUARIOS);
-
-        for (i = 0; i < todosOsGraficos.length; i++) {
-            // exibindo - ou não - o gráfico
-            if (todosOsGraficos[i].id != idAquario) {
-                let elementoAtual = document.getElementById(`grafico${todosOsGraficos[i].id}`)
-                if (elementoAtual.classList.contains("display-block")) {
-                    elementoAtual.classList.remove("display-block")
-                }
-                elementoAtual.classList.add("display-none")
-
-                // alterando estilo do botão
-                let btnAtual = document.getElementById(`btnAquario${todosOsGraficos[i].id}`)
-                if (btnAtual.classList.contains("btn-pink")) {
-                    btnAtual.classList.remove("btn-pink")
-                }
-                btnAtual.classList.add("btn-white")
+    function verificar() {
+        if (questao_atual == 1) {
+            if (perg1A.checked) {
+                pontuacao_acertos++
+            } else if (perg1B.checked || perg1C.checked || perg1D.checked) {
+                pontuacao_erros++
             }
+            questao_atual++;
+            perg1.style.display = "none";
+            perg2.style.display = "block"
+        } else if (questao_atual == 2) {
+            if (perg2A.checked) {
+                pontuacao_acertos++
+            } else if (perg2B.checked || perg2C.checked || perg2D.checked) {
+                pontuacao_erros++
+            }
+            questao_atual++;
+            perg2.style.display = "none";
+            perg3.style.display = "block"
+
+        } else if (questao_atual == 3) {
+            if (perg3C.checked) {
+                pontuacao_acertos++
+            } else if (perg3A.checked || perg3B.checked || perg3D.checked) {
+                pontuacao_erros++
+            }
+            questao_atual++;
+            perg3.style.display = "none";
+            perg4.style.display = "block"
+        } else if (questao_atual == 4) {
+            if (perg4D.checked) {
+                pontuacao_acertos++
+            } else if (perg4A.checked || perg4B.checked || perg4C.checked) {
+                pontuacao_erros++
+            }
+            questao_atual++;
+            perg4.style.display = "none";
+            perg5.style.display = "block"
+        } else if (questao_atual == 5) {
+            if (perg5B.checked) {
+                pontuacao_acertos++
+            } else if (perg5A.checked || perg5C.checked || perg5D.checked) {
+                pontuacao_erros++
+            }
+            questao_atual++;
+            perg5.style.display = "none";
+            perg6.style.display = "block"
+        } else if (questao_atual == 6) {
+            if (perg6B.checked) {
+                pontuacao_acertos++
+            } else if (perg6A.checked || perg6C.checked || perg6D.checked) {
+                pontuacao_erros++
+            }
+            questao_atual++;
+            perg6.style.display = "none";
+            perg7.style.display = "block"
+        } else if (questao_atual == 7) {
+            if (perg7A.checked) {
+                pontuacao_acertos++
+            } else if (perg7B.checked || perg7C.checked || perg7D.checked) {
+                pontuacao_erros++
+            }
+            questao_atual++;
+            perg7.style.display = "none";
+            perg8.style.display = "block"
+        } else if (questao_atual == 8) {
+            if (perg8A.checked) {
+                pontuacao_acertos++
+            } else if (perg8B.checked || perg8C.checked || perg8D.checked) {
+                pontuacao_erros++
+            }
+            questao_atual++;
+            perg8.style.display = "none";
+            perg9.style.display = "block"
+        } else if (questao_atual == 9) {
+            if (perg9C.checked) {
+                pontuacao_acertos++
+            } else if (perg9A.checked || perg9B.checked || perg9D.checked) {
+                pontuacao_erros++
+            }
+            questao_atual++;
+            perg9.style.display = "none";
+            perg10.style.display = "block"
+        } else if (questao_atual == 10) {
+            if (perg10B.checked) {
+                pontuacao_acertos++
+            } else if (perg10A.checked || perg1C.checked || perg1D.checked) {
+                pontuacao_erros++
+            }
+            perg10.style.display = "none";
+            resultadoquiz.innerHTML = `
+            
+            quantidade de acertos: ${pontuacao_acertos}
+            quantidade de erros: ${pontuacao_erros}
+            <button onclick="jogarbanco()">finalizar</button>
+            `
         }
-
-        // exibindo - ou não - o gráfico
-        let graficoExibir = document.getElementById(`grafico${idAquario}`)
-        graficoExibir.classList.remove("display-none")
-        graficoExibir.classList.add("display-block")
-
-        // alterando estilo do botão
-        let btnExibir = document.getElementById(`btnAquario${idAquario}`)
-        btnExibir.classList.remove("btn-white")
-        btnExibir.classList.add("btn-pink")
     }
 
-    // O gráfico é construído com três funções:
-    // 1. obterDadosGrafico -> Traz dados do Banco de Dados para montar o gráfico da primeira vez
-    // 2. plotarGrafico -> Monta o gráfico com os dados trazidos e exibe em tela
-    // 3. atualizarGrafico -> Atualiza o gráfico, trazendo novamente dados do Banco
+    function jogarbanco() {
+        document.getElementById('inicarQuiz').style.display = 'block'
+        document.getElementById('resultadoquiz').style.display = 'none'
+        window.location.href = './dashboard.html';
 
-    // Esta função *obterDadosGrafico* busca os últimos dados inseridos em tabela de medidas.
-    // para, quando carregar o gráfico da primeira vez, já trazer com vários dados.
-    // A função *obterDadosGrafico* também invoca a função *plotarGrafico*
+        var certas = pontuacao_acertos;
+        var erradas = pontuacao_erros;
+        fetch("/usuarios/jogarbanco", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                respostasCorretasServer: certas,
+                respostasIncorretasServer: erradas,
+                idusuarioServer: sessionStorage.ID_USUARIO,
+            }),
+        })
+    }
 
-    //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
-    //     Para ajustar o "select", ajuste o comando sql em src/models
-    function obterDadosGrafico(idAquario) {
+    var timeout = setTimeout(function usuarioquiz() {
+        fetch("/usuarios/usuarioquiz", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idusuarioServer: sessionStorage.ID_USUARIO
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+            if (resposta.ok) {
+                console.log(resposta);
 
-        alterarTitulo(idAquario)
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    console.log(json.resultadoChamar_Quiz[0])
 
+                    var resultado = json.resultadoChamar_Quiz[0];
+
+                    var certasMedicao = resultado.certas;
+                    var erradasMedicao = resultado.erradas;
+
+                    certasDash = certasMedicao;
+                    erradasDash = erradasMedicao;
+                })
+            }
+        })
+    }, 200)
+
+    window.onload = exibirQuizDosUsuarios();
+
+    function exibirQuizDosUsuarios() {
+        document.getElementById("graficos").innerHTML += `
+        <div id="grafico">
+            <h3 class="tituloGraficos">
+                <span id="tituloGrafico">Nossa Comunidade</span>
+            </h3>
+            <div class="graph">
+                <canvas id="myChartCanvas"></canvas>
+            </div>
+        </div>
+    `;
+
+        obterDadosGrafico();
+    }
+
+    function obterDadosGrafico() {
         if (proximaAtualizacao != undefined) {
             clearTimeout(proximaAtualizacao);
         }
 
-        fetch(`/medidas/ultimas/${idAquario}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/usuarios/quizdados/`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    resposta.reverse();
-
-                    plotarGrafico(resposta, idAquario);
-
+                    plotarGrafico(resposta);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
             }
         })
             .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+                console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
             });
     }
 
-    // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
-    // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
-    // A função *plotarGrafico* também invoca a função *atualizarGrafico*
-    function plotarGrafico(resposta, idAquario) {
+    function plotarGrafico(resposta) {
+        console.log('Iniciando plotagem do gráfico...');
 
-        console.log('iniciando plotagem do gráfico...');
+        let labels = ["Resultados do Quiz"];
 
-        // Criando estrutura para plotar gráfico - labels
-        let labels = [];
-
-        // Criando estrutura para plotar gráfico - dados
         let dados = {
             labels: labels,
             datasets: [{
-                label: 'Umidade',
-                data: [],
-                fill: false,
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
+                label: 'Acertos',
+                data: [resposta[0].corretas],
+                backgroundColor: 'green',
+                borderColor: 'green',
+                borderWidth: 1
             },
             {
-                label: 'Temperatura',
-                data: [],
-                fill: false,
-                borderColor: 'rgb(199, 52, 52)',
-                tension: 0.1
+                label: 'Erros',
+                data: [resposta[0].incorretas],
+                backgroundColor: 'red',
+                borderColor: 'red',
+                borderWidth: 1
             }]
         };
 
-        console.log('----------------------------------------------')
-        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-        console.log(resposta)
-
-        // Inserindo valores recebidos em estrutura para plotar o gráfico
-        for (i = 0; i < resposta.length; i++) {
-            var registro = resposta[i];
-            labels.push(registro.momento_grafico);
-            dados.datasets[0].data.push(registro.umidade);
-            dados.datasets[1].data.push(registro.temperatura);
-        }
-
-        console.log('----------------------------------------------')
-        console.log('O gráfico será plotado com os respectivos valores:')
-        console.log('Labels:')
-        console.log(labels)
-        console.log('Dados:')
-        console.log(dados.datasets)
-        console.log('----------------------------------------------')
-
-        // Criando estrutura para plotar gráfico - config
+        // Configuração do gráfico
         const config = {
-            type: 'line',
+            type: 'bar',
             data: dados,
         };
 
         // Adicionando gráfico criado em div na tela
         let myChart = new Chart(
-            document.getElementById(`myChartCanvas${idAquario}`),
+            document.getElementById(`myChartCanvas`),
             config
         );
-
-        setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
-    }
-
-
-    // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
-    // buscando a última medida inserida em tabela contendo as capturas, 
-
-    //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
-    //     Para ajustar o "select", ajuste o comando sql em src/models
-    function atualizarGrafico(idAquario, dados, myChart) {
-
-
-
-        fetch(`/medidas/tempo-real/${idAquario}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (novoRegistro) {
-
-                    obterdados(idAquario);
-                    // alertar(novoRegistro, idAquario);
-                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-                    console.log(`Dados atuais do gráfico:`);
-                    console.log(dados);
-
-                    let avisoCaptura = document.getElementById(`avisoCaptura${idAquario}`)
-                    avisoCaptura.innerHTML = ""
-
-
-                    if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
-                        console.log("---------------------------------------------------------------")
-                        console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-                        avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
-                        console.log("Horário do novo dado capturado:")
-                        console.log(novoRegistro[0].momento_grafico)
-                        console.log("Horário do último dado capturado:")
-                        console.log(dados.labels[dados.labels.length - 1])
-                        console.log("---------------------------------------------------------------")
-                    } else {
-                        // tirando e colocando valores no gráfico
-                        dados.labels.shift(); // apagar o primeiro
-                        dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
-
-                        dados.datasets[0].data.shift();  // apagar o primeiro de umidade
-                        dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
-
-                        dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
-                        dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
-
-                        myChart.update();
-                    }
-
-                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
 
     }
 </script>

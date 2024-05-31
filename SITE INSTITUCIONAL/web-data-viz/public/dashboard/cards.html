@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaTech | Tempo Real</title>
+    <title>Gamestudy | Inicial</title>
 
 
     <link rel="stylesheet" href="./../css/dashboards.css">
@@ -18,102 +18,122 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <style>
+        canvas {
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    </style>
 </head>
 
-<body onload="validarSessao(), exibirAquarios(),  atualizacaoPeriodica()">
+<body onload="criargrafico()">
 
     <div class="janela">
 
         <div class="header-left dash-header">
-
-            <h1>AquaTech</h1>
+            <img src="../css/imagens/logo (1).png">
+            <h1>Gamestudy</h1>
 
             <div class="hello">
-                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+                <h3>Seja bem vindo, <span id="b_usuario">usuário</span>!</h3>
             </div>
 
             <div class="btn-nav">
-                <h3>Aquários</h3>
+                <h3>Tela inicial</h3>
             </div>
 
             <div class="btn-nav-white">
                 <a href="./dashboard.html">
-                    <h3>Gráficos</h3>
+                    <h3>Quiz</h3>
                 </a>
             </div>
 
             <div class="btn-nav-white">
                 <a href="./mural.html">
-                    <h3>Mural de Avisos</h3>
+                    <h3>perfil</h3>
                 </a>
             </div>
 
-            <div class="btn-logout" onclick="limparSessao()">
-                <h3>Sair</h3>
-            </div>
+            
 
+            <div class="btn-logout">
+                <a href="./../index.html">
+                    <h3>Sair</h3>
+                </a>
+            </div>
         </div>
 
         <div class="dash">
-            <div id="alerta">
-            </div>
-            <div class="area-parametros-alerta">
-                <p class="titulo-legenda">
-                    Legenda - Parâmetros para Alertas
-                </p>
-                <div class="parametros-alerta">
-                    <div class="item-regua perigo-frio">
-                        <p>Perigo</p>
-                        <p>&lt;=5°C</p>
-                    </div>
-                    <div class="item-regua alerta-frio">
-                        <p>Alerta</p>
-                        <p>&lt;=10°C</p>
-                    </div>
-                    <div class="item-regua ideal">
-                        <p>Ideal</p>
-                        <p>20°C</p>
-                    </div>
-                    <div class="item-regua alerta-quente">
-                        <p>Alerta</p>
-                        <p>&gt;=22°C</p>
-                    </div>
-                    <div class="item-regua perigo-quente">
-                        <p>Perigo</p>
-                        <p>&gt;=23°C</p>
-                    </div>
+            <div class="secao_mural">
+                <div class="card_info">
+                    <h2>jogos no navegador!</h2>
+                    <p>Esse site é o melhor para você que gosta de jogos antigos e que rodam no próprio navegador!</p>
+                    <a href="https://www.minijogos.com.br/">VER</a>
+                </div>
+                <div class="card_info">
+                    <h2>Comunidade ativa!</h2>
+                    <p>Sabe qual o melhor lugar para assistir aos seus streamers favoritos jogando? descubra aqui!</p>
+                    <a href="https://www.twitch.tv/">VER</a>
+                </div>
+                <div class="card_info">
+                    <h2>QUIZ</h2>
+                    <p>Oque você acha de testar seu conhecimento sobre jogos com um quiz divertido?</p>
+                    <a href="dashboard.html">VER</a>
                 </div>
             </div>
-
-            <div class="cards" id="cardAquarios">
-
+            <div class="titulografico">
+                <h1>Estatísticas</h1>
             </div>
 
+            <!-- <div class="graficoschart">
+                <section>
+                    <canvas id='chartjs'></canvas>
+                </section>
+                <section>
+                    <canvas id='chartjs2'></canvas>
+                </section>
+            </div> -->
+            
         </div>
+    </div>
 
     </div>
 
 </body>
 
 <script>
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-    function exibirAquarios() {
-        JSON.parse(sessionStorage.AQUARIOS).forEach(item => {
-            document.getElementById("cardAquarios").innerHTML += `
-                    <div class="card-aquario">
-                        <div class="title-aquario">
-                            <h1>${item.descricao}</h1>
-                        </div>
-                        <div class="desc-aquario">
-                        <div class="temperatura">
-                            <p id="temp_aquario_${item.id}">-°C</p>
-                        </div>
-                        <div class="cor-alerta" id="card_${item.id}"></div>
-                    </div>
-                    </div>
-                    `
-        });
-    }
+//     function criargrafico() {
+        
+       
+//   const ctx = document.getElementById('chartjs');
+
+//   new Chart(ctx, {
+//     type: 'bar',
+//     data: {
+//       labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+//       datasets: [{
+//         label: '# of Votes',
+//         data: [12, 19, 3, 5, 2, 3],
+//         borderWidth: 1
+//       }]
+//     },
+//     options: {
+//       scales: {
+//         y: {
+//           beginAtZero: true
+//         }
+//       }
+//     }
+//   });
+//     }
+
 
 </script>
 

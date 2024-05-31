@@ -1,5 +1,4 @@
 var usuarioModel = require("../models/usuarioModel");
-var aquarioModel = require("../models/aquarioModel");
 
 function autenticar(req, res) {
     var email = req.body.emailServer;
@@ -20,19 +19,17 @@ function autenticar(req, res) {
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
 
-                        aquarioModel.buscarAquariosPorEmpresa(resultadoAutenticar[0].empresaId)
-                            .then((resultadoAquarios) => {
-                                if (resultadoAquarios.length > 0) {
+                                if (resultadoAutenticar.length > 0) {
                                     res.json({
-                                        id: resultadoAutenticar[0].id,
+                                        idusuario: resultadoAutenticar[0].idusuario,
                                         email: resultadoAutenticar[0].email,
                                         nome: resultadoAutenticar[0].nome,
-                                        senha: resultadoAutenticar[0].senha,
+                                        senha: resultadoAutenticar[0].senha
                                     });
                                 } else {
                                     res.status(204).json({ aquarios: [] });
                                 }
-                            })
+                            
                     } else if (resultadoAutenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
                     } else {
@@ -51,59 +48,106 @@ function autenticar(req, res) {
 }
 
 function cadastrar(req, res) {
-    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
-    
-    var nomecaractere = nome.length;
-    var confirmaçãosenha = senha;
-    var cpfcaractere = cpf.length;
-    var indice_arroba = email.indexOf('@');
 
-    // Faça as validações dos valores
-    if (nome == undefined) {
-        res.status(400).send("Seu nome está undefined!");
-    } else if (email == undefined) {
-        res.status(400).send("Seu email está undefined!");
-    } else if (senha == undefined) {
-        res.status(400).send("Sua senha está undefined!");
-    } else if (empresaId == undefined) {
-        res.status(400).send("Sua empresa está undefined!");
-    } else if (nomecaractere <= 1) {
-        res.status(400).send("Seu nome deve possuir mais de uma letra!");
-    } else if (confirmaçãosenha != senha) {
-        res.status(400).send("Insira a mesma senha inserida no campo acima!");
-    } else if (cpfcaractere < 11) {
-        res.status(400).send("Seu cpf deve possuir 11 caracteres");
-    } else if (senha <= 6) {
-        res.status(400).send("Insira uma senha mais forte! com mais caracteres!");
-    } else if (indice_arroba < 0) {
-        res.status(400).send("Seu email precisa ter um arroba!( @ )");
-    } else {
-
-    
-
-        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, senha)
-            .then(
-                function (resultado) {
-                    res.json(resultado);
-                }
-            ).catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log(
-                        "\nHouve um erro ao realizar o cadastro! Erro: ",
-                        erro.sqlMessage
-                    );
-                    res.status(500).json(erro.sqlMessage);
-                }
-            );
-    }
+    usuarioModel.cadastrar(nome, email, senha)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
 }
+// }
+
+
+
+function jogarbanco(req, res) {
+    var certas = req.body.respostasCorretasServer;
+    var erradas = req.body.respostasIncorretasServer;
+    var idusuario = req.body.idusuarioServer;
+
+    usuarioModel.jogarbanco(certas,erradas,idusuario)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function usuarioquiz(req, res) {
+    var idusuario = req.body.idusuarioServer;
+
+    usuarioModel.usuarioquiz(idusuario)
+    .then(
+        function (resultadoChamar_Quiz) {
+
+            res.json({
+                resultadoChamar_Quiz
+            });
+}
+    )
+}
+
+function quizdados(req, res) {
+    const limite_linhas = 1;
+
+    usuarioModel.quizdados(limite_linhas).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!");
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+
+function quizdadostemporeal(req, res) {
+    usuarioModel.quizdadostemporeal().then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!");
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+
+
+
 
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    jogarbanco,
+    usuarioquiz,
+    quizdados,
+    quizdadostemporeal
 }
