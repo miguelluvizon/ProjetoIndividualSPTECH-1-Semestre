@@ -1,4 +1,4 @@
-const { funcaobarrar } = require("../controllers/perfilController");
+// const { funcaobarrar } = require("../controllers/perfilController");
 var database = require("../database/config")
 
 function autenticar(jogofav, jogoplat, jogoestilo) {
@@ -32,5 +32,5 @@ function cadastrar(jogofav, jogoplat, jogoestilo) {
 module.exports = {
     autenticar,
     cadastrar,
-    funcaobarrar
+    // funcaobarrar
 };

@@ -21,7 +21,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    
+
     <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
 </head>
 
@@ -68,14 +68,15 @@
 
     <div class="dash">
         <div class="painelquiz">
-            <div id="inicarQuiz">
+            <div class="iniciarQuiz" id="inicarQuiz">
                 <h1>Quiz de jogos</h1>
-                <p>Bora testar seus conhecimentos?</p>
+                <p>Para testar seu conhecimento sobre o mundo dos games com 10 perguntas diversas   !</p>
                 <button onclick="iniciar()">Iniciar</button>
             </div>
             <div class="perguntasquiz">
                 <div id="perg1" style="display: none;">
                     <h1>Qual a cor do personagem sonic?</h1>
+                    <img src="./../css/imagens/sonicpergunta.png"> <br>
                     <input type="radio" id="perg1A" onclick="verificar()"> azul
                     <input type="radio" id="perg1B" onclick="verificar()"> vermelho
                     <input type="radio" id="perg1C" onclick="verificar()"> laranja
@@ -83,6 +84,7 @@
                 </div>
                 <div id="perg2" style="display: none;">
                     <h1>De qual jogo é o personagem Scorpion, o ninja amarelo?</h1>
+                    <img src="./../css/imagens/scorpionpergunta.jpg"> <br>
                     <input type="radio" id="perg2A" onclick="verificar()"> Mortal Kombat
                     <input type="radio" id="perg2B" onclick="verificar()"> Street Fighter
                     <input type="radio" id="perg2C" onclick="verificar()"> Tekken
@@ -90,6 +92,7 @@
                 </div>
                 <div id="perg3" style="display: none;">
                     <h1>Quem é o rival do personagem ryu do street fighter?</h1>
+                    <img src="./../css/imagens/ryupergunta.jpg"> <br>
                     <input type="radio" id="perg3A" onclick="verificar()"> Ken
                     <input type="radio" id="perg3B" onclick="verificar()"> Sagat
                     <input type="radio" id="perg3C" onclick="verificar()"> Akuma
@@ -97,6 +100,7 @@
                 </div>
                 <div id="perg4" style="display: none;">
                     <h1>Quem é o irmao do personagem mario?</h1>
+                    <img src="./../css/imagens/warioperg.jpg"> <br>
                     <input type="radio" id="perg4A" onclick="verificar()"> Bowser
                     <input type="radio" id="perg4B" onclick="verificar()"> Toad
                     <input type="radio" id="perg4C" onclick="verificar()"> Wario
@@ -104,6 +108,7 @@
                 </div>
                 <div id="perg5" style="display: none;">
                     <h1> Qual o nome do protagonista de The witcher?</h1>
+                    <img src="./../css/imagens/geraltperg.jpg"> <br>
                     <input type="radio" id="perg5A" onclick="verificar()"> Eredin
                     <input type="radio" id="perg5B" onclick="verificar()"> Geralt
                     <input type="radio" id="perg5C" onclick="verificar()"> Regis
@@ -111,6 +116,7 @@
                 </div>
                 <div id="perg6" style="display: none;">
                     <h1>Qual o jogo do sonic onde ele se transforma em um lobisomem?</h1>
+                    <img src="./../css/imagens/werehog.png"> <br>
                     <input type="radio" id="perg6A" onclick="verificar()"> Sonic frontiers
                     <input type="radio" id="perg6B" onclick="verificar()"> Sonic unleashed
                     <input type="radio" id="perg6C" onclick="verificar()"> Sonic forces
@@ -118,6 +124,7 @@
                 </div>
                 <div id="perg7" style="display: none;">
                     <h1>Qual foi a primeira rivalidade de mascotes do mundo dos jogos?</h1>
+                    <img src="./../css/imagens/rivaisperg.jpg"> <br>
                     <input type="radio" id="perg7A" onclick="verificar()"> sonic & mario
                     <input type="radio" id="perg7B" onclick="verificar()"> mario & link
                     <input type="radio" id="perg7C" onclick="verificar()"> sonic & starfox
@@ -125,6 +132,7 @@
                 </div>
                 <div id="perg8" style="display: none;">
                     <h1>Quando foi que o minecraft foi lançado?</h1>
+                    <img src="./../css/imagens/minecraftperg.jpg"> <br>
                     <input type="radio" id="perg8A" onclick="verificar()"> 2011
                     <input type="radio" id="perg8B" onclick="verificar()"> 2012
                     <input type="radio" id="perg8C" onclick="verificar()"> 2015
@@ -132,6 +140,7 @@
                 </div>
                 <div id="perg9" style="display: none;">
                     <h1>Qual o nome da franquia de jogos onde tudo é feito de peças?</h1>
+                    <img src="./../css/imagens/legoperg.jpg"> <br>
                     <input type="radio" id="perg9A" onclick="verificar()"> kogama
                     <input type="radio" id="perg9B" onclick="verificar()"> gta V
                     <input type="radio" id="perg9C" onclick="verificar()"> lego
@@ -139,17 +148,19 @@
                 </div>
                 <div id="perg10" style="display: none;">
                     <h1>Quantos jogos tem a franquia FNAF?</h1>
+                    <img src="./../css/imagens/fnafperg.jpg"> <br>
                     <input type="radio" id="perg10A" onclick="verificar()"> 3
                     <input type="radio" id="perg10B" onclick="verificar()"> 10
                     <input type="radio" id="perg10C" onclick="verificar()"> 8
                     <input type="radio" id="perg10D" onclick="verificar()"> 7
                 </div>
 
-                <div id="resultadoquiz"></div>
             </div>
+            <div id="resultadoquiz" style="display: none;">
+            </div>
+            <div id="botaofinalizar" class="botaofinalizar" style="display: none;"><button onclick="jogarbanco()">finalizar</button></div>
         </div>
-        <div id="graficos">
-        </div>
+
     </div>
     </div>
     </div>
@@ -265,21 +276,17 @@
             } else if (perg10A.checked || perg1C.checked || perg1D.checked) {
                 pontuacao_erros++
             }
+            questao_atual++;
             perg10.style.display = "none";
-            resultadoquiz.innerHTML = `
-            
-            quantidade de acertos: ${pontuacao_acertos}
-            quantidade de erros: ${pontuacao_erros}
-            <button onclick="jogarbanco()">finalizar</button>
-            `
+            botaofinalizar.style.display = "block"
+
         }
     }
 
     function jogarbanco() {
-        document.getElementById('inicarQuiz').style.display = 'block'
-        document.getElementById('resultadoquiz').style.display = 'none'
-        window.location.href = './dashboard.html';
-
+        document.getElementById('botaofinalizar').style.display = 'none';
+        window.location = "cards.html";
+        
         var certas = pontuacao_acertos;
         var erradas = pontuacao_erros;
         fetch("/usuarios/jogarbanco", {
@@ -293,7 +300,10 @@
                 idusuarioServer: sessionStorage.ID_USUARIO,
             }),
         })
+        
     }
+
+
 
     var timeout = setTimeout(function usuarioquiz() {
         fetch("/usuarios/usuarioquiz", {
@@ -316,8 +326,8 @@
 
                     var resultado = json.resultadoChamar_Quiz[0];
 
-                    var certasMedicao = resultado.certas;
-                    var erradasMedicao = resultado.erradas;
+                    var certasMedicao = resultado.corretas;
+                    var erradasMedicao = resultado.incorretas;
 
                     certasDash = certasMedicao;
                     erradasDash = erradasMedicao;
@@ -332,7 +342,7 @@
         document.getElementById("graficos").innerHTML += `
         <div id="grafico">
             <h3 class="tituloGraficos">
-                <span id="tituloGrafico">Nossa Comunidade</span>
+                <span id="tituloGrafico">Resultados do Quiz</span>
             </h3>
             <div class="graph">
                 <canvas id="myChartCanvas"></canvas>
@@ -366,7 +376,7 @@
     function plotarGrafico(resposta) {
         console.log('Iniciando plotagem do gráfico...');
 
-        let labels = ["Resultados do Quiz"];
+        let labels = [""];
 
         let dados = {
             labels: labels,

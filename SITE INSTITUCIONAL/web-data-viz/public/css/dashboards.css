@@ -186,7 +186,7 @@ body {
 }
 
 .tituloGraficos {
-  color: rgb(216, 216, 216);
+  color: rgb(0, 0, 0);
   display: flex;
   justify-content: center;
 }
@@ -442,7 +442,7 @@ canvas {
   transition: 0.3s ease;
 }
 
-.graficoschart {
+.grafico {
   width: 50vw;
   height: 50vh;
 }
@@ -452,7 +452,6 @@ canvas {
   justify-content: center;
   color: white;
   font-size: 15px;
-  
   margin-top: 15px;
   border-bottom: 3px solid rgb(255, 255, 255);
   border-top: 3px solid rgb(255, 255, 255);
@@ -461,21 +460,56 @@ canvas {
 .painelquiz {
   display: flex;
   width: 60%;
-  height: 60vh;
+  height: 80vh;
   background-color: white;
-  /* background-image: url(imagens/jogofundo2.jpg); */
-  /* background-size: cover; */
   position: relative;
   border-radius: 20px;
-  left: 18%;
-  top: 15%;
+  left: 17%;
+  top: 10%;
+  justify-content: center;
   align-items: center;
   color: rgb(0, 0, 0);
   flex-direction: column;
-  justify-content: center;
-  border-left: 5px solid rgb(68, 0, 68);
-  border-right: 5px solid rgb(68, 0, 68);
+  border-left: 20px solid rgb(68, 0, 68);
+  border-right: 20px solid rgb(68, 0, 68);
+  padding: 10px;
 }
+
+.iniciarQuiz {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+
+
+.painelquiz button {
+  width: 13vw;
+  height: 8vh;
+  border: none;
+  border-radius: 20px;
+  font-size: 20px;
+  cursor: pointer;
+  background-color: blueviolet;
+  transition: all 0.2s ease;
+}
+
+
+.painelquiz button:hover {
+  background-color: purple;
+  color: white;
+  border: 3px solid purple;
+}
+
+.painelquiz p {
+  font-size: 30px;
+}
+
+
+
+
+
 
 
 

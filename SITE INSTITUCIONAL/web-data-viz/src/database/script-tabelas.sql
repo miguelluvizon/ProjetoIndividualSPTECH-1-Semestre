@@ -13,10 +13,7 @@ create table perfilgamer (
 idperfilgamer int primary key auto_increment,
 jogo_fav varchar(100),
 jogo_plataforma varchar(50),
-jogo_estilo varchar(50),
-constraint chkjogoplataforma check (jogo_plataforma in ('PC','CONSOLE', 'MOBILE')),
-constraint chkjogoestilo check (jogo_estilo in 
-('AVENTURA','AÇÃO','RPG','FPS','ESTRATÉGIA','CORRIDA','ESPORTE','PLATAFORMA','INDIE','TERROR'))
+jogo_estilo varchar(50)
 );
 
 create table usuario (
@@ -30,17 +27,12 @@ constraint fkperfilgamerusuario foreign key (fkperfilgamer) references perfilgam
 
 create table quiz (
 idquiz int primary key auto_increment,
+corretas int,
+incorretas int,
 fkusuario int,
 foreign key (fkusuario) references usuario (idusuario)
 );
 
-create table resposta (
-fkquiz int,
-resp1 int,
-resp2 int,
-resp3 int,
-resp4 int,
-resp5 int,
-resp6 int,
-constraint fkrespostaquiz foreign key(fkquiz) references quiz (idquiz)
-);
+select * from usuario;
+select * from perfilgamer;
+select * from quiz;

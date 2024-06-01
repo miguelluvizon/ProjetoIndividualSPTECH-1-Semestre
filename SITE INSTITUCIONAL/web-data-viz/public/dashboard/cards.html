@@ -31,7 +31,7 @@
     </style>
 </head>
 
-<body onload="criargrafico()">
+<body onload="exibirQuizDosUsuarios()">
 
     <div class="janela">
 
@@ -90,49 +90,128 @@
                 <h1>Estatísticas</h1>
             </div>
 
-            <!-- <div class="graficoschart">
-                <section>
-                    <canvas id='chartjs'></canvas>
-                </section>
-                <section>
-                    <canvas id='chartjs2'></canvas>
-                </section>
-            </div> -->
+            <div class="fundografico">
+                <div id="graficos"></div>
+            </div>
             
         </div>
     </div>
 
     </div>
-
 </body>
 
 <script>
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
+    let proximaAtualizacao;
+
 //     function criargrafico() {
         
        
-//   const ctx = document.getElementById('chartjs');
+  const ctx = document.getElementById('chartjs');
 
-//   new Chart(ctx, {
-//     type: 'bar',
-//     data: {
-//       labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-//       datasets: [{
-//         label: '# of Votes',
-//         data: [12, 19, 3, 5, 2, 3],
-//         borderWidth: 1
-//       }]
-//     },
-//     options: {
-//       scales: {
-//         y: {
-//           beginAtZero: true
-//         }
-//       }
-//     }
-//   });
-//     }
+  var timeout = setTimeout(function usuarioquiz() {
+        fetch("/usuarios/usuarioquiz", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idusuarioServer: sessionStorage.ID_USUARIO
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    console.log(json.resultadoChamar_Quiz[0])
+
+                    var resultado = json.resultadoChamar_Quiz[0];
+
+                    var certasMedicao = resultado.certas;
+                    var erradasMedicao = resultado.erradas;
+
+                    certasDash = certasMedicao;
+                    erradasDash = erradasMedicao;
+                })
+            }
+        })
+    }, 200)
+
+   function exibirQuizDosUsuarios() {
+    document.getElementById("graficos").innerHTML += `
+        <div id="grafico">
+            <h3 class="tituloGraficos">
+                <span id="tituloGrafico" style="color: white;">Resultados do seu quiz mais recente</span>
+            </h3>
+            <div class="graph">
+                <canvas id="myChartCanvas"></canvas>
+            </div>
+        </div>
+    `;
+
+        obterDadosGrafico();
+   }
+
+   function obterDadosGrafico() {
+        if (proximaAtualizacao != undefined) {
+            clearTimeout(proximaAtualizacao);
+        }
+
+        fetch(`/usuarios/quizdados/`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    plotarGrafico(resposta);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+            });
+    }
+
+   function plotarGrafico(resposta) {
+        console.log('Iniciando plotagem do gráfico...');
+
+        let labels = [""];
+
+        let dados = {
+            labels: labels,
+            datasets: [{
+                label: 'Acertos',
+                data: [resposta[0].corretas],
+                backgroundColor: 'green',
+                borderColor: 'green',
+                borderWidth: 1
+            },
+            {
+                label: 'Erros',
+                data: [resposta[0].incorretas],
+                backgroundColor: 'red',
+                borderColor: 'red',
+                borderWidth: 1
+            }]
+        };
+
+        // Configuração do gráfico
+        const config = {
+            type: 'bar',
+            data: dados,
+        };
+
+        // Adicionando gráfico criado em div na tela
+        let myChart = new Chart(
+            document.getElementById(`myChartCanvas`),
+            config
+        );
+
+    }
 
 
 </script>
