@@ -1,20 +1,11 @@
 create database gamestudy;
 use gamestudy;
 
-create table perfilgamer (
-idperfilgamer int primary key auto_increment,
-jogo_fav varchar(100),
-jogo_plataforma varchar(50),
-jogo_estilo varchar(50)
-);
-
 create table usuario (
 idusuario int primary key auto_increment,
 nome varchar(50),
 email varchar(50),
-senha varchar(50),
-fkperfilgamer int,
-constraint fkperfilgamerusuario foreign key (fkperfilgamer) references perfilgamer (idperfilgamer)
+senha varchar(50)
 );
 
 create table quiz (
@@ -26,7 +17,6 @@ foreign key (fkusuario) references usuario (idusuario)
 );
 
 select * from usuario;
-select * from perfilgamer;
 select * from quiz;
 
 

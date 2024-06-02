@@ -139,10 +139,6 @@ function quizdadostemporeal(req, res) {
     });
 }
 
-
-
-
-
 module.exports = {
     autenticar,
     cadastrar,
