@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gamestudy | Perfil </title>
+
+    <link rel="stylesheet" href="./../css/dashboards.css">
+    <script src="../js/sessao.js"></script>
+    <!-- <script src="./../js/alerta.js"></script> -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+    <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
+</head>
+
+
+<body>
+
+    <div class="janela">
+        <div class="header-left">
+            <img src="../css/imagens/logo (1).png">
+            <h1>Gamestudy</h1>
+
+            <div class="hello">
+                <h3>Seja bem vindo, <span id="b_usuario">usuário</span>!</h3>
+            </div>
+
+            <div class="btn-nav-white">
+                <a href="./cards.html">
+                    <h3>Tela inicial</h3>
+                </a>
+            </div>
+
+            <div class="btn-nav-white">
+                <a href="./dashboard.html">
+                    <h3>Quiz</h3>
+                </a>
+            </div>
+
+            <div class="btn-nav">
+                <h3>Perfil</h3>
+            </div>
+
+            <div class="btn-logout">
+                <a href="./../index.html">
+                    <h3>Sair</h3>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="dash">
+        <div class="dash-right-perfil">
+            <h1>Personalize seu perfil!</h1>
+            <div class="infosperfil">
+                <div class="respostasperfil">
+                    <p>Qual seu jogo favorito?</p> <input type="text" id="ipt_jogofav">
+                </div>
+                <div class="respostasperfil">
+                    <p>Qual seu estilo de jogo favorito?</p> <select id="select_estilo">
+                        <option>Selecione uma opção</option>
+                        <option>Ação</option>
+                        <option>Aventura</option>
+                        <option>RPG</option>
+                        <option>Terror</option>
+                        <option>Corrida</option>
+                        <option>FPS</option>
+                        <option>Estratégia</option>
+                        <option>Indie</option>
+                        <option>Retrô</option>
+                        <option>Simulação</option>
+                    </select>
+                </div>
+                <div class="respostasperfil">
+                <p>Qual a plataforma que você mais joga?</p> <select id="select_plataforma">
+                    <option>Selecione uma opção</option>
+                    <option>PC</option>
+                    <option>Mobile</option>
+                    <option>Console</option>
+                </select>
+            </div> <br>
+                <button onclick="salvarInfos()">Salvar</button>
+            </div>
+
+        </div>
+    </div>
+    </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+    function salvarInfos() {
+
+    }
+</script>

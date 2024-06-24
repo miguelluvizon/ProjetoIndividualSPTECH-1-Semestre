@@ -25,7 +25,6 @@
     <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
 </head>
 
-<!-- <body onload=" atualizarFeed()"> -->
 
 <body>
 
@@ -48,6 +47,12 @@
                 <h3>Quiz</h3>
             </div>
 
+            <div class="btn-nav-white">
+                <a href="./perfil.html">
+                <h3>Perfil</h3>
+            </a>
+            </div>
+
             <div class="btn-logout">
                 <a href="./../index.html">
                     <h3>Sair</h3>
@@ -60,7 +65,7 @@
         <div class="painelquiz">
             <div class="iniciarQuiz" id="inicarQuiz">
                 <h1>Quiz de jogos</h1>
-                <p>Para testar seu conhecimento sobre o mundo dos games com 10 perguntas diversas   !</p>
+                <p>Para testar seu conhecimento sobre o mundo dos games com 10 perguntas diversas !</p>
                 <button onclick="iniciar()">Iniciar</button>
             </div>
             <div class="perguntasquiz">
@@ -148,7 +153,8 @@
             </div>
             <div id="resultadoquiz" style="display: none;">
             </div>
-            <div id="botaofinalizar" class="botaofinalizar" style="display: none;"><button onclick="jogarbanco()">finalizar</button></div>
+            <div id="botaofinalizar" class="botaofinalizar" style="display: none;"><button
+                    onclick="jogarbanco()">finalizar</button></div>
         </div>
 
     </div>
@@ -186,7 +192,7 @@
             }
             questao_atual++;
             perg1.style.display = "none";
-            perg2.style.display = "block"
+            perg2.style.display = "block";
         } else if (questao_atual == 2) {
             if (perg2A.checked) {
                 pontuacao_acertos++
@@ -195,7 +201,7 @@
             }
             questao_atual++;
             perg2.style.display = "none";
-            perg3.style.display = "block"
+            perg3.style.display = "block";
 
         } else if (questao_atual == 3) {
             if (perg3C.checked) {
@@ -276,7 +282,7 @@
     function jogarbanco() {
         document.getElementById('botaofinalizar').style.display = 'none';
         window.location = "cards.html";
-        
+
         var certas = pontuacao_acertos;
         var erradas = pontuacao_erros;
         fetch("/usuarios/jogarbanco", {
@@ -290,113 +296,112 @@
                 idusuarioServer: sessionStorage.ID_USUARIO,
             }),
         })
-        
-    }
-
-
-
-    var timeout = setTimeout(function usuarioquiz() {
-        fetch("/usuarios/usuarioquiz", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                idusuarioServer: sessionStorage.ID_USUARIO
-            })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
-            if (resposta.ok) {
-                console.log(resposta);
-
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-                    console.log(json.resultadoChamar_Quiz[0])
-
-                    var resultado = json.resultadoChamar_Quiz[0];
-
-                    var certasMedicao = resultado.corretas;
-                    var erradasMedicao = resultado.incorretas;
-
-                    certasDash = certasMedicao;
-                    erradasDash = erradasMedicao;
-                })
-            }
-        })
-    }, 200)
-
-    window.onload = exibirQuizDosUsuarios();
-
-    function exibirQuizDosUsuarios() {
-        document.getElementById("graficos").innerHTML += `
-        <div id="grafico">
-            <h3 class="tituloGraficos">
-                <span id="tituloGrafico">Resultados do Quiz</span>
-            </h3>
-            <div class="graph">
-                <canvas id="myChartCanvas"></canvas>
-            </div>
-        </div>
-    `;
-
-        obterDadosGrafico();
-    }
-
-    function obterDadosGrafico() {
-        if (proximaAtualizacao != undefined) {
-            clearTimeout(proximaAtualizacao);
-        }
-
-        fetch(`/usuarios/quizdados/`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    plotarGrafico(resposta);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
-            });
-    }
-
-    function plotarGrafico(resposta) {
-        console.log('Iniciando plotagem do gráfico...');
-
-        let labels = [""];
-
-        let dados = {
-            labels: labels,
-            datasets: [{
-                label: 'Acertos',
-                data: [resposta[0].corretas],
-                backgroundColor: 'green',
-                borderColor: 'green',
-                borderWidth: 1
-            },
-            {
-                label: 'Erros',
-                data: [resposta[0].incorretas],
-                backgroundColor: 'red',
-                borderColor: 'red',
-                borderWidth: 1
-            }]
-        };
-
-        // Configuração do gráfico
-        const config = {
-            type: 'bar',
-            data: dados,
-        };
-
-        // Adicionando gráfico criado em div na tela
-        let myChart = new Chart(
-            document.getElementById(`myChartCanvas`),
-            config
-        );
 
     }
+
+
+
+    // var timeout = setTimeout(function usuarioquiz() {
+    //     fetch("/usuarios/usuarioquiz", {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/json"
+    //         },
+    //         body: JSON.stringify({
+    //             idusuarioServer: sessionStorage.ID_USUARIO
+    //         })
+    //     }).then(function (resposta) {
+    //         console.log("ESTOU NO THEN DO entrar()!")
+    //         if (resposta.ok) {
+    //             console.log(resposta);
+
+    //             resposta.json().then(json => {
+    //                 console.log(json);
+    //                 console.log(JSON.stringify(json));
+    //                 console.log(json.resultadoChamar_Quiz[0])
+
+    //                 var resultado = json.resultadoChamar_Quiz[0];
+
+    //                 var certasMedicao = resultado.corretas;
+    //                 var erradasMedicao = resultado.incorretas;
+
+    //                 certasDash = certasMedicao;
+    //                 erradasDash = erradasMedicao;
+    //             })
+    //         }
+    //     })
+    // }, 200)
+
+    // window.onload = exibirQuizDosUsuarios();
+
+    // function exibirQuizDosUsuarios() {
+    //     document.getElementById("graficos").innerHTML += `
+    //     <div id="grafico">
+    //         <h3 class="tituloGraficos">
+    //             <span id="tituloGrafico">Resultados do Quiz</span>
+    //         </h3>
+    //         <div class="graph">
+    //             <canvas id="myChartCanvas"></canvas>
+    //         </div>
+    //     </div>
+    // `;
+
+    //     obterDadosGrafico();
+    // }
+
+    // function obterDadosGrafico() {
+    //     if (proximaAtualizacao != undefined) {
+    //         clearTimeout(proximaAtualizacao);
+    //     }
+
+    //     fetch(`/usuarios/quizdados/`, {
+    //         cache: 'no-store',
+    //         body: JSON.stringify({
+    //             idusuarioServer: sessionStorage.ID_USUARIO
+    //         })
+    //     }).then(function (response) {
+    //         if (response.ok) {
+    //             response.json().then(function (resposta) {
+    //                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+    //                 plotarGrafico(resposta);
+    //             });
+    //         } else {
+    //             console.error('Nenhum dado encontrado ou erro na API');
+    //         }
+    //     })
+    //         .catch(function (error) {
+    //             console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+    //         });
+    // }
+
+    // function plotarGrafico(resposta) {
+    //     console.log('Iniciando plotagem do gráfico...');
+
+    //     let labels = [""];
+
+    //     let dados = {
+    //         labels: labels,
+    //         datasets: [{
+    //             label: 'Acertos',
+    //             data: [resposta[0].corretas],
+    //             backgroundColor: 'green',
+    //             borderColor: 'green',
+    //             borderWidth: 1
+    //         },
+    //         {
+    //             label: 'Erros',
+    //             data: [resposta[0].incorretas],
+    //             backgroundColor: 'red',
+    //             borderColor: 'red',
+    //             borderWidth: 1
+    //         }]
+    //     };
+
+    //     // Configuração do gráfico
+    //     const config = {
+    //         type: 'bar',
+    //         data: dados,
+    //     };
+
+    // }
 </script>

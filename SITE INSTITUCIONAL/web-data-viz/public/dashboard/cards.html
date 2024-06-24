@@ -53,6 +53,12 @@
                 </a>
             </div>
 
+            <div class="btn-nav-white">
+                <a href="./perfil.html">
+                <h3>Perfil</h3>
+            </a>
+            </div>
+
             <div class="btn-logout">
                 <a href="./../index.html">
                     <h3>Sair</h3>
@@ -85,7 +91,7 @@
             <div class="fundografico">
                 <div id="graficos"></div>
             </div>
-            
+
         </div>
     </div>
 
@@ -97,12 +103,12 @@
 
     let proximaAtualizacao;
 
-//     function criargrafico() {
-        
-       
-  const ctx = document.getElementById('chartjs');
+    //     function criargrafico() {
 
-  var timeout = setTimeout(function usuarioquiz() {
+
+    const ctx = document.getElementById('chartjs');
+
+    var timeout = setTimeout(function usuarioquiz() {
         fetch("/usuarios/usuarioquiz", {
             method: "POST",
             headers: {
@@ -114,12 +120,12 @@
         }).then(function (resposta) {
             console.log("ESTOU NO THEN DO entrar()!")
             if (resposta.ok) {
-                console.log(resposta);
+                // console.log(resposta);
 
                 resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-                    console.log(json.resultadoChamar_Quiz[0])
+                    // console.log(json);
+                    // console.log(JSON.stringify(json));
+                    // console.log(json.resultadoChamar_Quiz[0])
 
                     var resultado = json.resultadoChamar_Quiz[0];
 
@@ -133,8 +139,8 @@
         })
     }, 200)
 
-   function exibirQuizDosUsuarios() {
-    document.getElementById("graficos").innerHTML += `
+    function exibirQuizDosUsuarios() {
+        document.getElementById("graficos").innerHTML += `
         <div id="grafico">
             <h3 class="tituloGraficos">
                 <span id="tituloGrafico" style="color: white;">Resultados do seu quiz mais recente</span>
@@ -146,14 +152,24 @@
     `;
 
         obterDadosGrafico();
-   }
+    }
 
-   function obterDadosGrafico() {
+    function obterDadosGrafico() {
         if (proximaAtualizacao != undefined) {
             clearTimeout(proximaAtualizacao);
         }
-
-        fetch(`/usuarios/quizdados/`, { cache: 'no-store' }).then(function (response) {
+        console.log(sessionStorage.ID_USUARIO)
+        fetch(`/usuarios/quizdados/`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            cache: 'no-store',
+            body: JSON.stringify({
+                idusuarioServer: sessionStorage.ID_USUARIO
+            })
+        }).then(function (response) {
+            console.log(response);
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
@@ -168,7 +184,7 @@
             });
     }
 
-   function plotarGrafico(resposta) {
+    function plotarGrafico(resposta) {
         console.log('Iniciando plotagem do gráfico...');
 
         let labels = [""];

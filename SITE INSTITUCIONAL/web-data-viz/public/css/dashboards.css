@@ -291,15 +291,24 @@ canvas {
   color: chocolate;
 }
 
+.dash-right-perfil p {
+  font-size: 20px;
+}
+
 .dash-right-perfil h1 {
   height: 30px;
+}
+
+.respostasperfil {
+  text-align: center;
 }
 
 .infosperfil {
   display: flex;
   flex-direction: column;
-  height: 300px;
+  height: 400px;
   align-items: center;
+  justify-content: space-between;
 }
 
 .infosperfil input {
@@ -319,6 +328,7 @@ canvas {
 .dash-right-perfil button {
   width: 13vw;
   height: 8vh;
+  border-bottom: 20px;
   border: none;
   border-radius: 20px;
   font-size: 20px;
@@ -461,7 +471,7 @@ canvas {
   display: flex;
   width: 60%;
   height: 80vh;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   position: relative;
   border-radius: 20px;
   left: 17%;

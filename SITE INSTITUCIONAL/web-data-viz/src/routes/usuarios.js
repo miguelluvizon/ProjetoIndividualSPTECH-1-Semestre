@@ -20,7 +20,7 @@ router.post("/usuarioquiz", function (req, res) {
     usuarioController.usuarioquiz(req, res);
 });
 
-router.get("/quizdados", function (req, res) {
+router.post("/quizdados", function (req, res) {
     usuarioController.quizdados(req, res);
 });
 

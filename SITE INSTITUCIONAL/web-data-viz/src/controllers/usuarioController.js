@@ -100,18 +100,17 @@ function usuarioquiz(req, res) {
     usuarioModel.usuarioquiz(idusuario)
     .then(
         function (resultadoChamar_Quiz) {
-
             res.json({
                 resultadoChamar_Quiz
             });
-}
+        }
     )
 }
 
 function quizdados(req, res) {
-    const limite_linhas = 1;
-
-    usuarioModel.quizdados(limite_linhas).then(function (resultado) {
+    var idusuario = req.body.idusuarioServer;
+    
+    usuarioModel.quizdados(idusuario).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -126,7 +125,8 @@ function quizdados(req, res) {
 
 
 function quizdadostemporeal(req, res) {
-    usuarioModel.quizdadostemporeal().then(function (resultado) {
+    usuarioModel.quizdadostemporeal(idusuario).then(function (resultado) {
+        var idusuario = req.body.idusuarioServer;
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
