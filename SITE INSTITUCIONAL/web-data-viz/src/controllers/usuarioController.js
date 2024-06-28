@@ -19,17 +19,17 @@ function autenticar(req, res) {
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
 
-                                if (resultadoAutenticar.length > 0) {
-                                    res.json({
-                                        idusuario: resultadoAutenticar[0].idusuario,
-                                        email: resultadoAutenticar[0].email,
-                                        nome: resultadoAutenticar[0].nome,
-                                        senha: resultadoAutenticar[0].senha
-                                    });
-                                } else {
-                                    res.status(204).json({ aquarios: [] });
-                                }
-                            
+                        if (resultadoAutenticar.length > 0) {
+                            res.json({
+                                idusuario: resultadoAutenticar[0].idusuario,
+                                email: resultadoAutenticar[0].email,
+                                nome: resultadoAutenticar[0].nome,
+                                senha: resultadoAutenticar[0].senha
+                            });
+                        } else {
+                            res.status(204).json({ aquarios: [] });
+                        }
+
                     } else if (resultadoAutenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
                     } else {
@@ -51,8 +51,9 @@ function cadastrar(req, res) {
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
+    var idusuario = req.body.idusuarioServer;
 
-    usuarioModel.cadastrar(nome, email, senha)
+    usuarioModel.cadastrar(nome, email, senha, idusuario)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -68,7 +69,28 @@ function cadastrar(req, res) {
             }
         );
 }
-// }
+
+function cadastrarperfil(req, res) {
+    var nome = req.body.nomeServer;
+    var idusuario = req.body.idusuarioServer;
+
+    usuarioModel.cadastrarperfil(nome, idusuario)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 
 
 
@@ -77,7 +99,7 @@ function jogarbanco(req, res) {
     var erradas = req.body.respostasIncorretasServer;
     var idusuario = req.body.idusuarioServer;
 
-    usuarioModel.jogarbanco(certas,erradas,idusuario)
+    usuarioModel.jogarbanco(certas, erradas, idusuario)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -98,18 +120,18 @@ function usuarioquiz(req, res) {
     var idusuario = req.body.idusuarioServer;
 
     usuarioModel.usuarioquiz(idusuario)
-    .then(
-        function (resultadoChamar_Quiz) {
-            res.json({
-                resultadoChamar_Quiz
-            });
-        }
-    )
+        .then(
+            function (resultadoChamar_Quiz) {
+                res.json({
+                    resultadoChamar_Quiz
+                });
+            }
+        )
 }
 
 function quizdados(req, res) {
     var idusuario = req.body.idusuarioServer;
-    
+
     usuarioModel.quizdados(idusuario).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
@@ -139,11 +161,38 @@ function quizdadostemporeal(req, res) {
     });
 }
 
+function salvarInfos(req, res) {
+    var idusuario = req.body.idusuarioServer;
+    var jogofav = req.body.jogofavServer;
+    var estilo = req.body.jogoestiloServer;
+    var plataforma = req.body.jogoplatServer;
+
+    usuarioModel.salvarInfos(jogofav, estilo, plataforma, idusuario)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+
+
+}
+
 module.exports = {
     autenticar,
     cadastrar,
+    cadastrarperfil,
     jogarbanco,
     usuarioquiz,
     quizdados,
-    quizdadostemporeal
+    quizdadostemporeal,
+    salvarInfos
 }

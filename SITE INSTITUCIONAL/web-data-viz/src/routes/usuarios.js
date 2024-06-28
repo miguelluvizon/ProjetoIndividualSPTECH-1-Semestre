@@ -3,9 +3,12 @@ var router = express.Router();
 
 var usuarioController = require("../controllers/usuarioController");
 
-//Recebendo os dados do html e direcionando para a função cadastrar de usuarioController.js
 router.post("/cadastrar", function (req, res) {
     usuarioController.cadastrar(req, res);
+})
+
+router.post("/cadastrarperfil", function (req, res) { // rota para salvar as informações do perfil no banco de dados
+    usuarioController.cadastrarperfil(req, res);
 })
 
 router.post("/autenticar", function (req, res) {
@@ -28,6 +31,8 @@ router.get("/quizdadostemporeal", function (req, res) {
     usuarioController.quizdadostemporeal(req, res);
 });
 
-
+router.post("/salvarInfos", function (req, res) { // rota para salvar as informações do perfil no banco de dados
+    usuarioController.salvarInfos(req, res);
+});
 
 module.exports = router;

@@ -1,51 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CADASTRO</title>
-    <link rel="stylesheet" href="css/stylecadastro.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CADASTRO</title>
+  <link rel="stylesheet" href="css/stylecadastro.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
+
 <body>
-    <div class="boxcentralcadastro">
-        <div>
-        <h1>CADASTRO</h1>
-        <div class="boxinputscadastro">
-            <input type="text" id="input_nome" placeholder="Nome de usuário">
-            <i class='bx bxs-user'></i>
-        </div>
+  <div class="boxcentralcadastro">
+    <div>
+      <h1>CADASTRO</h1>
+      <div class="boxinputscadastro">
+        <input type="text" id="input_nome" placeholder="Nome de usuário">
+        <i class='bx bxs-user'></i>
+      </div>
 
-        <div class="boxinputscadastro">
-            <input type="text" id="input_email" placeholder="Email">
-            <i class='bx bx-envelope' ></i>
-        </div>
+      <div class="boxinputscadastro">
+        <input type="text" id="input_email" placeholder="Email">
+        <i class='bx bx-envelope'></i>
+      </div>
 
-        <div class="boxinputscadastro">
-            <input type="password" id="input_senha" placeholder="Senha">
-            <i class='bx bx-lock-alt' ></i>
-        </div>
-        <div class="boxinputscadastro">
-            <input type="password" id="input_senha_confirmado" placeholder="Confirme sua Senha">
-            <i class='bx bx-lock-alt' ></i>
-        </div>
+      <div class="boxinputscadastro">
+        <input type="password" id="input_senha" placeholder="Senha">
+        <i class='bx bx-lock-alt'></i>
+      </div>
+      <div class="boxinputscadastro">
+        <input type="password" id="input_senha_confirmado" placeholder="Confirme sua Senha">
+        <i class='bx bx-lock-alt'></i>
+      </div>
 
-        <button onclick="cadastrar()" class="botaocadastro">Cadastrar</button>
+      <button onclick="cadastrar();cadastrarperfil()" class="botaocadastro">Cadastrar</button>
     </div>
-    </div>
+  </div>
 </body>
+
 </html>
 
 <script>
   function cadastrar() {
-    
+
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
     var nomeVar = input_nome.value;
     var emailVar = input_email.value;
     var senhaVar = input_senha.value;
     var confirmacaoSenhaVar = input_senha_confirmado.value;
-  
+
     var nomecaractere = nomeVar.length;
     var confirmaçãosenha = senhaVar;
     var indice_arroba = emailVar.indexOf('@');
@@ -95,24 +98,39 @@
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-          
-          
+
+
           setTimeout(() => {
             alert('Cadastro realizado com sucesso')
             window.location = "login.html";
           }, "100");
 
           limparFormulario();
-          
+
         } else {
           throw "Houve um erro ao tentar realizar o cadastro!";
         }
       })
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
-        
+
       });
 
     return false;
+  }
+
+  function cadastrarperfil() {
+    var nomeVar = input_nome.value;
+
+    fetch("/usuarios/cadastrarperfil", { // fetch para jogar as informações no banco de dados
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nomeServer: nomeVar,
+        idusuarioServer: sessionStorage.ID_USUARIO,
+      }),
+    })
   }
 </script>

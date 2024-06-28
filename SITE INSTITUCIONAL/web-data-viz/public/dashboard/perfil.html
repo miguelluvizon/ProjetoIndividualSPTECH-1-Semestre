@@ -68,7 +68,7 @@
                 </div>
                 <div class="respostasperfil">
                     <p>Qual seu estilo de jogo favorito?</p> <select id="select_estilo">
-                        <option>Selecione uma opção</option>
+                        <option value="0">Selecione uma opção</option>
                         <option>Ação</option>
                         <option>Aventura</option>
                         <option>RPG</option>
@@ -82,13 +82,13 @@
                     </select>
                 </div>
                 <div class="respostasperfil">
-                <p>Qual a plataforma que você mais joga?</p> <select id="select_plataforma">
-                    <option>Selecione uma opção</option>
-                    <option>PC</option>
-                    <option>Mobile</option>
-                    <option>Console</option>
-                </select>
-            </div> <br>
+                    <p>Qual a plataforma que você mais joga?</p> <select id="select_plataforma">
+                        <option value="0">Selecione uma opção</option>
+                        <option>PC</option>
+                        <option>Mobile</option>
+                        <option>Console</option>
+                    </select>
+                </div> <br>
                 <button onclick="salvarInfos()">Salvar</button>
             </div>
 
@@ -103,7 +103,27 @@
 <script>
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-    function salvarInfos() {
+    function salvarInfos() { // função do botão "salvar"
+        var jogofav = ipt_jogofav.value;
+        var estilo = select_estilo.value;
+        var plataforma = select_plataforma.value;
 
+        if (jogofav == '' || estilo == 0 || plataforma == 0) {
+            alert('Preencha todos os campos para salvar as informações!')
+        } else {
+            fetch("/usuarios/salvarinfos", { // fetch para jogar as informações no banco de dados
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                jogofavServer: jogofav,
+                jogoestiloServer: estilo,
+                idusuarioServer: sessionStorage.ID_USUARIO,
+                jogoplatServer: plataforma,
+            }),
+        })
+        alert('Dados salvos com sucesso!')
+        }
     }
 </script>
