@@ -314,15 +314,23 @@ canvas {
 .infosperfil input {
   border: none;
   border-radius: 20px;
-  width: 20vw;
+  width: 15vw;
   height: 5vh;
 }
 
 .infosperfil select {
   border: none;
   border-radius: 20px;
-  width: 20vw;
+  width: 15vw;
   height: 5vh;
+}
+
+.infossalvasperfil {
+  background-color: #212124;
+  padding: 10px;
+  border: 3px solid chocolate;
+  border-radius: 10px;
+  font-size: 20px;
 }
 
 .dash-right-perfil button {
@@ -515,6 +523,7 @@ canvas {
 .painelquiz p {
   font-size: 30px;
 }
+
 
 
 

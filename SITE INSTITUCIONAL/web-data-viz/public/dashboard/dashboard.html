@@ -49,8 +49,8 @@
 
             <div class="btn-nav-white">
                 <a href="./perfil.html">
-                <h3>Perfil</h3>
-            </a>
+                    <h3>Perfil</h3>
+                </a>
             </div>
 
             <div class="btn-logout">
@@ -153,8 +153,10 @@
             </div>
             <div id="resultadoquiz" style="display: none;">
             </div>
-            <div id="botaofinalizar" class="botaofinalizar" style="display: none;"><button
-                    onclick="jogarbanco()">finalizar</button></div>
+            <div id="botaofinalizar" class="botaofinalizar" style="display: none;">
+                <h1>Você acertou <span id="porcentagem_quiz"></span>% do quiz!</h1> <!--importante definir um id para o span para ele ser manipulado depois-->
+                <button onclick="jogarbanco()">Ver estatísticas</button>
+            </div>
         </div>
 
     </div>
@@ -168,15 +170,12 @@
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
     let proximaAtualizacao;
 
-
     var questao_atual = 1;
     var pontuacao_acertos = 0;
     var pontuacao_erros = 0;
 
     var certasdash = 0;
     var erradasdash = 0;
-
-
 
     function iniciar() {
         document.getElementById('inicarQuiz').style.display = 'none'
@@ -276,6 +275,8 @@
             perg10.style.display = "none";
             botaofinalizar.style.display = "block"
 
+            var calculo_porcentagem = (pontuacao_acertos / 10) * 100; // No final da lógica do quiz, foi implementado um calculo de porcentagem baseado nos acertos do usuário
+            porcentagem_quiz.innerHTML = calculo_porcentagem; // E aqui essa porcentagem é exibida no span 
         }
     }
 
@@ -298,4 +299,6 @@
         })
 
     }
+
+    
 </script>

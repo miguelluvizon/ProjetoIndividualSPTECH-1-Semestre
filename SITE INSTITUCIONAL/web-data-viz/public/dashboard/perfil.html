@@ -61,33 +61,42 @@
 
     <div class="dash">
         <div class="dash-right-perfil">
-            <h1>Personalize seu perfil!</h1>
+            <div class="infossalvasperfil"> <!--Box das informações salvas-->
+                Jogo favorito: <span id="infojogofav"></span> <br> <!--É importante definir um id para os spans-->
+                Estilo favorito: <span id="infoestilojogo"></span> <br> <!--Para eles poderem ser manipulados depois, mudando o seu conteúdo-->
+                Plataforma favorita: <span id="infoplatjogo"></span> <br>
+            </div> <!--infossalvasperfil-->
             <div class="infosperfil">
                 <div class="respostasperfil">
-                    <p>Qual seu jogo favorito?</p> <input type="text" id="ipt_jogofav">
+                    <p>Qual seu jogo favorito? <input type="text" id="ipt_jogofav">
+                    </p>
                 </div>
                 <div class="respostasperfil">
-                    <p>Qual seu estilo de jogo favorito?</p> <select id="select_estilo">
-                        <option value="0">Selecione uma opção</option>
-                        <option>Ação</option>
-                        <option>Aventura</option>
-                        <option>RPG</option>
-                        <option>Terror</option>
-                        <option>Corrida</option>
-                        <option>FPS</option>
-                        <option>Estratégia</option>
-                        <option>Indie</option>
-                        <option>Retrô</option>
-                        <option>Simulação</option>
-                    </select>
+                    <p>Qual seu estilo de jogo favorito?
+                        <select id="select_estilo">
+                            <option value="0">Selecione uma opção</option>
+                            <option>Ação</option>
+                            <option>Aventura</option>
+                            <option>RPG</option>
+                            <option>Terror</option>
+                            <option>Corrida</option>
+                            <option>FPS</option>
+                            <option>Estratégia</option>
+                            <option>Indie</option>
+                            <option>Retrô</option>
+                            <option>Simulação</option>
+                        </select>
+                    </p>
                 </div>
                 <div class="respostasperfil">
-                    <p>Qual a plataforma que você mais joga?</p> <select id="select_plataforma">
-                        <option value="0">Selecione uma opção</option>
-                        <option>PC</option>
-                        <option>Mobile</option>
-                        <option>Console</option>
-                    </select>
+                    <p>Qual a plataforma que você mais joga?
+                        <select id="select_plataforma">
+                            <option value="0">Selecione uma opção</option>
+                            <option>PC</option>
+                            <option>Mobile</option>
+                            <option>Console</option>
+                        </select>
+                    </p>
                 </div> <br>
                 <button onclick="salvarInfos()">Salvar</button>
             </div>
@@ -103,27 +112,39 @@
 <script>
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
+    infojogofav.innerHTML = sessionStorage.JOGO_FAVORITO; // Manipula o span, definindo o conteúdo dele como a informação armazenada no sessionStorage
+    infoestilojogo.innerHTML = sessionStorage.JOGO_ESTILO; // Mesma coisa nesse
+    infoplatjogo.innerHTML = sessionStorage.JOGO_PLATAFORMA; // E nesse
+
     function salvarInfos() { // função do botão "salvar"
-        var jogofav = ipt_jogofav.value;
+        var jogofav = ipt_jogofav.value; // declaração das variáves 
         var estilo = select_estilo.value;
         var plataforma = select_plataforma.value;
 
         if (jogofav == '' || estilo == 0 || plataforma == 0) {
-            alert('Preencha todos os campos para salvar as informações!')
+            alert('Preencha todos os campos para salvar as informações!') // verificação de preenchimento dos campos
         } else {
+            sessionStorage.JOGO_FAVORITO = jogofav; // Guarda no sessionStorage as informações preenchidas
+            sessionStorage.JOGO_ESTILO = estilo; // Guarda no sessionStorage as informações preenchidas
+            sessionStorage.JOGO_PLATAFORMA = plataforma; // Guarda no sessionStorage as informações preenchidas
+
+            infojogofav.innerHTML = jogofav; // Essa outra manipulação de HTML serve para atualizar dinamicamente
+            infoestilojogo.innerHTML = estilo; // A box de informações, porque com as linhas 115,116 e 117 só é
+            infoplatjogo.innerHTML = plataforma; // Atualizado depois a página da reload.
+
             fetch("/usuarios/salvarinfos", { // fetch para jogar as informações no banco de dados
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                jogofavServer: jogofav,
-                jogoestiloServer: estilo,
-                idusuarioServer: sessionStorage.ID_USUARIO,
-                jogoplatServer: plataforma,
-            }),
-        })
-        alert('Dados salvos com sucesso!')
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    jogofavServer: jogofav, // vou inserir o jogo favorito
+                    jogoestiloServer: estilo, // o estilo do jogo
+                    jogoplatServer: plataforma, // a plataforma do jogo
+                    idusuarioServer: sessionStorage.ID_USUARIO, // e a fk do usuario
+                }),
+            })
+            alert('Dados salvos com sucesso!')
         }
     }
 </script>
