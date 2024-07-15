@@ -180,7 +180,7 @@ body {
 }
 
 .graph {
-  width: 70%;
+  width: 40%;
   margin: auto;
   padding-top: 10px;
 }
@@ -522,6 +522,24 @@ canvas {
 
 .painelquiz p {
   font-size: 30px;
+}
+
+.ranking {
+  display: flex;
+  color: white;
+  justify-content: center;
+  height: 70vh;
+}
+
+.box_ranking {
+  display: flex;
+  margin-top: 30px;
+  width: 350px;
+  background-color: rgba(78, 8, 78, 0.781);
+  border: 3px solid white;
+  border-radius: 10px;
+  padding: 0 40px;
+  flex-direction: column;
 }
 
 

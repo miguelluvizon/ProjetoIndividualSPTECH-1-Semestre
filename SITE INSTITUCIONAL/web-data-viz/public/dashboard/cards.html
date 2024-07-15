@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="./../css/estilo.css" />
 
     <script src="../js/sessao.js"></script>
-    <script src="../js/alerta.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
@@ -92,6 +91,15 @@
                 <div id="graficos"></div>
             </div>
 
+            <div class="ranking">
+                <div class="box_ranking">
+                    <h1>Ranking do quiz</h1>
+                    <div id="painel_rank" class="infos_ranking">
+                        
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -102,9 +110,6 @@
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
     let proximaAtualizacao;
-
-    //     function criargrafico() {
-
 
     const ctx = document.getElementById('chartjs');
 
@@ -120,15 +125,9 @@
         }).then(function (resposta) {
             console.log("ESTOU NO THEN DO entrar()!")
             if (resposta.ok) {
-                // console.log(resposta);
 
                 resposta.json().then(json => {
-                    // console.log(json);
-                    // console.log(JSON.stringify(json));
-                    // console.log(json.resultadoChamar_Quiz[0])
-
                     var resultado = json.resultadoChamar_Quiz[0];
-
                     var certasMedicao = resultado.certas;
                     var erradasMedicao = resultado.erradas;
 
@@ -190,26 +189,16 @@
         let labels = [""];
 
         let dados = {
-            labels: labels,
+            labels: ['Acertos', 'Erros'],
             datasets: [{
-                label: 'Acertos',
-                data: [resposta[0].corretas],
-                backgroundColor: 'green',
-                borderColor: 'green',
-                borderWidth: 1
-            },
-            {
-                label: 'Erros',
-                data: [resposta[0].incorretas],
-                backgroundColor: 'red',
-                borderColor: 'red',
-                borderWidth: 1
+                data: [resposta[0].corretas, resposta[0].incorretas],
+                backgroundColor: ['green', 'red'],
             }]
         };
 
-        // Configuração do gráfico
+        // Configuração do gráfico (definindo ele como pizza no type)
         const config = {
-            type: 'bar',
+            type: 'pie',
             data: dados,
         };
 
@@ -221,8 +210,31 @@
 
     }
 
+    rankear_quiz();
 
+    function rankear_quiz() {
+        fetch(`/usuarios/rankingquiz/`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+                    ordenar_ranking(resposta);
+                });
+            } else {
+                console.error('erro na obtenção');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados para o ranking: ${error.message}`);
+            });
+    }
 
+    function ordenar_ranking(resposta) {
+        
+        for(var index = 0; index < resposta.length; index++) {
+            
+        }
+    }
 
 </script>
 

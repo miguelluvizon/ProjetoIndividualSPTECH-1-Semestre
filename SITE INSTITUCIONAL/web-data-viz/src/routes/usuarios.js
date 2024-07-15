@@ -35,4 +35,10 @@ router.post("/salvarInfos", function (req, res) { // rota para salvar as informa
     usuarioController.salvarInfos(req, res);
 });
 
+router.get("/rankingquiz", function (req, res) {
+    usuarioController.rankingquiz(req, res);
+});
+
+
+
 module.exports = router;

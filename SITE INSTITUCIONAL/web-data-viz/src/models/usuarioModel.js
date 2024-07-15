@@ -69,29 +69,46 @@ function salvarInfos(jogofav, estilo, plataforma, idusuario) {
     var instrucaoSql1 = `
     UPDATE perfil SET jogo_fav = '${jogofav}' WHERE idperfil = ${idusuario}
     `;
-  
+
     const resultado1 = database.executar(instrucaoSql1);
-  
+
     var instrucaoSql2 = `
     UPDATE perfil SET jogo_estilo = '${estilo}' WHERE idperfil = ${idusuario}
     `;
-  
+
     const resultado2 = database.executar(instrucaoSql2);
-  
+
     var instrucaoSql3 = `
     UPDATE perfil SET jogo_plat = '${plataforma}' WHERE idperfil = ${idusuario}
     `;
-  
+
     const resultado3 = database.executar(instrucaoSql3);
-  
+
     var instrucaoSql4 = `
     UPDATE perfil SET fkusuario = '${idusuario}' WHERE idperfil = ${idusuario}
     `;
-  
+
     const resultado4 = database.executar(instrucaoSql4);
-  
-    return {resultado1, resultado2, resultado3, resultado4};
-  }
+
+    return { resultado1, resultado2, resultado3, resultado4 };
+}
+
+function rankingquiz(idusuario) {
+
+    var instrucaoSql =
+        `SELECT usuario.nome, quiz.corretas FROM usuario
+        JOIN quiz ON usuario.${idusuario} = quiz.${idusuario}
+        JOIN (SELECT fkusuario, MAX(corretas) AS pontuacao
+        FROM quiz GROUP BY fkusuario) AS us ON 
+        quiz.fkusuario = us.fkusuario AND quiz.corretas = us.pontuacao
+        ORDER BY quiz.corretas DESC LIMIT 10;
+        `
+        ;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+
 
 module.exports = {
     autenticar,
@@ -101,6 +118,7 @@ module.exports = {
     usuarioquiz,
     quizdados,
     quizdadostemporeal,
-    salvarInfos
+    salvarInfos,
+    rankingquiz
 };
 
