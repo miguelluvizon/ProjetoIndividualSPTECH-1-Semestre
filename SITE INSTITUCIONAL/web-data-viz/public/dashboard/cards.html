@@ -94,8 +94,9 @@
             <div class="ranking">
                 <div class="box_ranking">
                     <h1>Ranking do quiz</h1>
+                    <span>(Melhor pontuação)</span>
                     <div id="painel_rank" class="infos_ranking">
-                        
+
                     </div>
                 </div>
             </div>
@@ -212,7 +213,7 @@
 
     rankear_quiz();
 
-    function rankear_quiz() {
+    function rankear_quiz() { // função que utilizando o método fetch faz uma requisição HTTP para fazer o ranking funcionar 
         fetch(`/usuarios/rankingquiz/`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
@@ -229,10 +230,10 @@
             });
     }
 
-    function ordenar_ranking(resposta) {
-        
-        for(var index = 0; index < resposta.length; index++) {
-            
+    function ordenar_ranking(resposta) { // função com parâmetro para o ranking
+        for(var index = 0; index < resposta.length; index++) { // Aqui é usado um "for" para repetir cada elemento dentro do array (resposta) com base no index do loop que começa no 0 e vai até o tamanho da resposta
+            var ranking_atual = resposta[index]; // essa variável pega o elemento atual da resposta com base no index
+            painel_rank.innerHTML += `<h2> <span> ${index + 1}º ${ranking_atual.nome} - ${ranking_atual.ranking} pontos </span> </h3>` // manipulação da div para exibir as informações
         }
     }
 

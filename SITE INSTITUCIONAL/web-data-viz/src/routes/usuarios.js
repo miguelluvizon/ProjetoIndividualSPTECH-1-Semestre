@@ -35,7 +35,7 @@ router.post("/salvarInfos", function (req, res) { // rota para salvar as informa
     usuarioController.salvarInfos(req, res);
 });
 
-router.get("/rankingquiz", function (req, res) {
+router.get("/rankingquiz", function (req, res) { // rota get para processar a requisição para gerar resposta
     usuarioController.rankingquiz(req, res);
 });
 

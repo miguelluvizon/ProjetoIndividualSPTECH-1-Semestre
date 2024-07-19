@@ -66,6 +66,7 @@ function quizdadostemporeal(idusuario) {
 }
 
 function salvarInfos(jogofav, estilo, plataforma, idusuario) {
+    //Aqui a lógica utilizada foi que, ao clicar no botão para salvar as informações, os campos no banco de dados correspondentes as variáveis "jogofav","estilo" e "plataforma", fossem atualizados por meio do update, tudo de uma vez, por isso nessa function foi criada uma variável para cada instrução contendo o comando necessário para atualizar aquele campo em específico, e as consts criadas possuem a função de, quando chamadas pelo "return", executar o comando. 
     var instrucaoSql1 = `
     UPDATE perfil SET jogo_fav = '${jogofav}' WHERE idperfil = ${idusuario}
     `;
@@ -93,15 +94,13 @@ function salvarInfos(jogofav, estilo, plataforma, idusuario) {
     return { resultado1, resultado2, resultado3, resultado4 };
 }
 
-function rankingquiz(idusuario) {
-
+function rankingquiz() {
+    //Aqui o select usado retorna uma lista dos 10 usuários com a maior quantidade de respostas corretas no quiz, ordenados em ordem crescente de respostas corretas, agrupando pelo id do usuario
     var instrucaoSql =
-        `SELECT usuario.nome, quiz.corretas FROM usuario
-        JOIN quiz ON usuario.${idusuario} = quiz.${idusuario}
-        JOIN (SELECT fkusuario, MAX(corretas) AS pontuacao
-        FROM quiz GROUP BY fkusuario) AS us ON 
-        quiz.fkusuario = us.fkusuario AND quiz.corretas = us.pontuacao
-        ORDER BY quiz.corretas DESC LIMIT 10;
+        `
+        SELECT usuario.nome, MAX(quiz.corretas) as 'ranking' 
+        FROM usuario JOIN quiz ON usuario.idusuario = quiz.fkusuario
+        GROUP BY usuario.idusuario ORDER BY ranking LIMIT 10;
         `
         ;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);

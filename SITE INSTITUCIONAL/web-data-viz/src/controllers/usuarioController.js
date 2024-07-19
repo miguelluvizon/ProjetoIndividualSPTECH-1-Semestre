@@ -186,14 +186,14 @@ function salvarInfos(req, res) {
 
 }
 
-function rankingquiz(req, res) {
+function rankingquiz(req, res) { //rota no controllers para o ranking
     usuarioModel.rankingquiz().then(function (resultado) {
         res.json(resultado);
     }).catch(
         function (erro) {
             console.log(erro);
             console.log(
-                "\nHouve um erro ao rankear! Erro: ",
+                "\nHouve um erro ao criar o ranking! Erro: ",
                 erro.sqlMessage
             );
             res.status(500).json(erro.sqlMessage);
