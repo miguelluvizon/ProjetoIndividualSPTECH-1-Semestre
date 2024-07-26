@@ -107,8 +107,6 @@ function rankingquiz() {
     return database.executar(instrucaoSql);
 }
 
-
-
 module.exports = {
     autenticar,
     cadastrar,

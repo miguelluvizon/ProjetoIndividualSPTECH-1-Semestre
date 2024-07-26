@@ -500,8 +500,6 @@ canvas {
   padding: 20px;
 }
 
-
-
 .painelquiz button {
   width: 13vw;
   height: 8vh;
@@ -522,6 +520,11 @@ canvas {
 
 .painelquiz p {
   font-size: 30px;
+}
+
+.perguntasquiz {
+  display: flex;
+  align-items: center;
 }
 
 .ranking {

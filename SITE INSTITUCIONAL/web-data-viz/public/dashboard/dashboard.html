@@ -149,12 +149,53 @@
                     <input type="radio" id="perg10C" onclick="verificar()"> 8
                     <input type="radio" id="perg10D" onclick="verificar()"> 7
                 </div>
+                <div id="perg11" style="display: none;">
+                    <h1>Qual o nome do principal vilão de sonic?</h1>
+                    <img src="./../css/imagens/dr.eggman.jpg"> <br>
+                    <input type="radio" id="perg11A" onclick="verificar()"> Mephiles
+                    <input type="radio" id="perg11B" onclick="verificar()"> Eggman
+                    <input type="radio" id="perg11C" onclick="verificar()"> Dr. Ivo robotinik
+                    <input type="radio" id="perg11D" onclick="verificar()"> Shadow
+                </div>
+                <div id="perg12" style="display: none;">
+                    <h1>O protagonista "CJ" faz parte de qual jogo?</h1>
+                    <img src="./../css/imagens/cjgta.jpg"> <br>
+                    <input type="radio" id="perg12A" onclick="verificar()"> Animal crossing
+                    <input type="radio" id="perg12B" onclick="verificar()"> GTA san andreas
+                    <input type="radio" id="perg12C" onclick="verificar()"> Call of duty
+                    <input type="radio" id="perg12D" onclick="verificar()"> GTA 5
+                </div>
+                <div id="perg13" style="display: none;">
+                    <h1>Quem é esse pokemon?</h1>
+                    <img src="./../css/imagens/rayquaza.png"> <br>
+                    <input type="radio" id="perg13A" onclick="verificar()"> Rayquaza
+                    <input type="radio" id="perg13B" onclick="verificar()"> Garchomp
+                    <input type="radio" id="perg13C" onclick="verificar()"> Darkrai
+                    <input type="radio" id="perg13D" onclick="verificar()"> Seviper
+                </div>
+                <div id="perg14" style="display: none;">
+                    <h1>Quem é esse macaco?</h1>
+                    <img src="./../css/imagens/DK.png"> <br>
+                    <input type="radio" id="perg14A" onclick="verificar()"> Mr.monkey
+                    <input type="radio" id="perg14B" onclick="verificar()"> Donkey Kong
+                    <input type="radio" id="perg14C" onclick="verificar()"> King Kong
+                    <input type="radio" id="perg14D" onclick="verificar()"> Macaco
+                </div>
+                <div id="perg15" style="display: none;">
+                    <h1>Qual é o jogo do sonic onde o vilão mata o protagonista?</h1>
+                    <img src="./../css/imagens/mephiles.jpg"> <br>
+                    <input type="radio" id="perg15A" onclick="verificar()"> Sonic battle
+                    <input type="radio" id="perg15B" onclick="verificar()"> Sonic 3
+                    <input type="radio" id="perg15C" onclick="verificar()"> Sonic chaos
+                    <input type="radio" id="perg15D" onclick="verificar()"> Sonic 2006
+                </div>
 
             </div>
             <div id="resultadoquiz" style="display: none;">
             </div>
             <div id="botaofinalizar" class="botaofinalizar" style="display: none;">
-                <h1>Você acertou <span id="porcentagem_quiz"></span>% do quiz!</h1> <!--importante definir um id para o span para ele ser manipulado depois-->
+                <h1>Você acertou <span id="porcentagem_quiz"></span>% do quiz!</h1>
+                <!--importante definir um id para o span para ele ser manipulado depois-->
                 <button onclick="jogarbanco()">Ver estatísticas</button>
             </div>
         </div>
@@ -268,14 +309,59 @@
         } else if (questao_atual == 10) {
             if (perg10B.checked) {
                 pontuacao_acertos++
-            } else if (perg10A.checked || perg1C.checked || perg1D.checked) {
+            } else if (perg10A.checked || perg10C.checked || perg10D.checked) {
                 pontuacao_erros++
             }
             questao_atual++;
             perg10.style.display = "none";
+            perg11.style.display = "block"
+        } else if (questao_atual == 11) {
+            if (perg11C.checked) {
+                pontuacao_acertos++
+            } else if (perg11A.checked || perg11B.checked || perg11D.checked) {
+                pontuacao_erros++
+            }
+            questao_atual++;
+            perg11.style.display = "none";
+            perg12.style.display = "block"
+        } else if (questao_atual == 12) {
+            if (perg12B.checked) {
+                pontuacao_acertos++
+            } else if (perg12A.checked || perg12C.checked || perg12D.checked) {
+                pontuacao_erros++
+            }
+            questao_atual++;
+            perg12.style.display = "none";
+            perg13.style.display = "block"
+        } else if (questao_atual == 13) {
+            if (perg13A.checked) {
+                pontuacao_acertos++
+            } else if (perg13B.checked || perg13C.checked || perg13D.checked) {
+                pontuacao_erros++
+            }
+            questao_atual++;
+            perg13.style.display = "none";
+            perg14.style.display = "block"
+        } else if (questao_atual == 14) {
+            if (perg14B.checked) {
+                pontuacao_acertos++
+            } else if (perg14A.checked || perg14C.checked || perg14D.checked) {
+                pontuacao_erros++
+            }
+            questao_atual++;
+            perg14.style.display = "none";
+            perg15.style.display = "block"
+        } else if (questao_atual == 15) {
+            if (perg15D.checked) {
+                pontuacao_acertos++
+            } else if (perg15A.checked || perg15B.checked || perg15C.checked) {
+                pontuacao_erros++
+            }
+            questao_atual++;
+            perg15.style.display = "none";
             botaofinalizar.style.display = "block"
 
-            var calculo_porcentagem = (pontuacao_acertos / 10) * 100; // No final da lógica do quiz, foi implementado um calculo de porcentagem baseado nos acertos do usuário
+            var calculo_porcentagem = (pontuacao_acertos / 15) * 100; // No final da lógica do quiz, foi implementado um calculo de porcentagem baseado nos acertos do usuário
             porcentagem_quiz.innerHTML = calculo_porcentagem; // E aqui essa porcentagem é exibida no span 
         }
     }
@@ -300,5 +386,5 @@
 
     }
 
-    
+
 </script>
