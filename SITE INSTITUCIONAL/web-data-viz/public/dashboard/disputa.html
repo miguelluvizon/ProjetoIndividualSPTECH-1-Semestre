@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gamestudy | Perfil </title>
+
+    <link rel="stylesheet" href="./../css/dashboards.css">
+    <script src="../js/sessao.js"></script>
+    <!-- <script src="./../js/alerta.js"></script> -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+    <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
+</head>
+
+
+<body>
+
+    <div class="janela">
+        <div class="header-left">
+            <img src="../css/imagens/logo (1).png">
+            <h1>Gamestudy</h1>
+
+            <div class="hello">
+                <h3>Seja bem vindo, <span id="b_usuario">usuário</span>!</h3>
+            </div>
+
+            <div class="btn-nav-white">
+                <a href="./cards.html">
+                    <h3>Tela inicial</h3>
+                </a>
+            </div>
+
+            <div class="btn-nav-white">
+                <a href="./dashboard.html">
+                    <h3>Quiz</h3>
+                </a>
+            </div>
+
+            <div class="btn-nav-white">
+                <a href="./perfil.html">
+                    <h3>Perfil</h3>
+                </a>
+            </div>
+
+            <div class="btn-nav">
+                <h3>Disputa</h3>
+            </div>
+
+            <div class="btn-logout">
+                <a href="./../index.html">
+                    <h3>Sair</h3>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="dash">
+        <div class="dash-right-disputa">
+            <div class="titulo_disputa">
+                DISPUTA DE PERSONAGENS
+            </div>
+            <div class="ipt_disputa">
+                <div class="respostasperfil">
+                    <h3>Qual o nome do personagem?</h3> <input type="text" id="ipt_personagem">
+                </div>
+                <div class="respostasperfil">
+                    <h3>Qual é o seu poder?</h3> <input type="text" id="ipt_poder">
+                </div>
+                <p><button onclick="criar()">Criar</button>
+                    <button onclick="disputar()">Disputar</button>
+                </p>
+            </div>
+
+        </div>
+    </div>
+    </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+    let lista_personagens = [];
+
+    function criar() {
+        var nome = ipt_personagem.value;
+        var poder = ipt_poder.value;
+
+        if (nome == '' || poder == '') {
+            alert('Preencha os campos para criar um personagem!');
+        } else {
+            var pontuacao = Math.random() * 9 + 1;
+            var pontuacao_fix = pontuacao.toFixed(0);
+
+            const personagem = {
+                nome: nome,
+                pontos: pontuacao_fix
+            }
+
+            lista_personagens.push(personagem);
+            alert(`O personagem ${nome} foi criado com ${pontuacao_fix} pontos de batalha!`);
+        }
+
+    }
+
+    function disputar() {
+        var tamanho = lista_personagens.length;
+
+        if (tamanho < 2) {
+            alert('Insira pelo menos 2 personagens para poder realizar a disputa!')
+        } else {
+            var vencedor = lista_personagens[0];
+            for (var index = 1; index < tamanho; index++) {
+                if (lista_personagens[index].pontos > vencedor.pontos) {
+                    vencedor = lista_personagens[index];
+                }
+            }
+
+            alert(`O personagem vencedor foi o ${vencedor.nome} com ${vencedor.pontos} pontos de batalha!`);
+            lista_personagens = [];
+            lista_pontos = [];
+        }
+    }
+
+</script>

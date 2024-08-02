@@ -351,8 +351,6 @@ canvas {
   border: 3px solid purple;
 }
 
-
-
 .header-left h1 {
   color: #ffffff;
   font-size: 40px;
@@ -543,6 +541,65 @@ canvas {
   border-radius: 10px;
   padding: 0 40px;
   flex-direction: column;
+}
+
+.dash-right-disputa {
+  display: flex;
+  width: 70%;
+  height: 100vh;
+  background-image: url(imagens/sonicVSmario.jpeg);
+  background-size: cover;
+  position: relative;
+  border-radius: 50px;
+  top: 0;
+  left: 13%;
+  overflow: auto;
+  align-items: center;
+  color: white;
+  flex-direction: column;
+  justify-content: space-evenly;
+  border-left: 5px solid rgb(68, 0, 68);
+  border-right: 5px solid rgb(68, 0, 68);
+}
+
+.dash-right-disputa button {
+  width: 13vw;
+  height: 8vh;
+  border-bottom: 20px;
+  border: none;
+  border-radius: 20px;
+  font-size: 20px;
+  cursor: pointer;
+  background-color: blueviolet;
+  transition: all 0.2s ease;
+}
+
+.dash-right-disputa button:hover {
+  background-color: purple;
+  color: white;
+  border: 3px solid purple;
+}
+
+.titulo_disputa {
+  background-color: #212124;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 35px;
+}
+
+.ipt_disputa {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.ipt_disputa input {
+  border: none;
+  border-radius: 20px;
+  width: 15vw;
+  height: 5vh;
 }
 
 
