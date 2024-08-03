@@ -72,13 +72,13 @@
             </div>
             <div class="ipt_disputa">
                 <div class="respostasperfil">
-                    <h3>Qual o nome do personagem?</h3> <input type="text" id="ipt_personagem">
+                    <h3>Qual o nome do personagem?</h3> <input type="text" id="ipt_personagem"> <!--Input-->
                 </div>
                 <div class="respostasperfil">
-                    <h3>Qual é o seu poder?</h3> <input type="text" id="ipt_poder">
+                    <h3>Qual é o seu poder?</h3> <input type="text" id="ipt_poder"> <!--Input-->
                 </div>
-                <p><button onclick="criar()">Criar</button>
-                    <button onclick="disputar()">Disputar</button>
+                <p><button onclick="criar()">Criar</button> <!--Função "criar"-->
+                    <button onclick="disputar()">Disputar</button> <!--Função "disputar"-->
                 </p>
             </div>
 
@@ -93,45 +93,46 @@
 <script>
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-    let lista_personagens = [];
+    let lista_personagens = []; // Aqui eu crio um array que armazenará as informações do personagem (nome e pontos de batalha)
 
-    function criar() {
+    function criar() { //Função do botão criar
         var nome = ipt_personagem.value;
         var poder = ipt_poder.value;
 
-        if (nome == '' || poder == '') {
+        if (nome == '' || poder == '') { // Validação de preenchimento dos campos
             alert('Preencha os campos para criar um personagem!');
-        } else {
+        } else { // Com os campos preenchidos, a função irá gerar um número inteiro aleatório entre 0 e 10 que servirá como a "pontuação de batalha" daquele personagem
             var pontuacao = Math.random() * 9 + 1;
             var pontuacao_fix = pontuacao.toFixed(0);
 
-            const personagem = {
+            const personagem = { //JSON para o personagem criado
                 nome: nome,
                 pontos: pontuacao_fix
             }
 
-            lista_personagens.push(personagem);
-            alert(`O personagem ${nome} foi criado com ${pontuacao_fix} pontos de batalha!`);
+            lista_personagens.push(personagem); //que será adicionado ao array
+            alert(`O personagem ${nome} foi criado com ${pontuacao_fix} pontos de batalha!`); //Gerando um alert mostrando o nome do personagem e sua pontuação de batalha gerada
         }
 
     }
 
-    function disputar() {
-        var tamanho = lista_personagens.length;
+    function disputar() { //função do botão disputar
+        var tamanho = lista_personagens.length; // Aqui eu pego o tamanho do array
 
-        if (tamanho < 2) {
+        if (tamanho < 2) { // validação de 2 (ou mais) personagens para poder realizar a disputa
             alert('Insira pelo menos 2 personagens para poder realizar a disputa!')
         } else {
-            var vencedor = lista_personagens[0];
-            for (var index = 1; index < tamanho; index++) {
-                if (lista_personagens[index].pontos > vencedor.pontos) {
-                    vencedor = lista_personagens[index];
+            var vencedor = lista_personagens[0]; // Aqui eu crio uma variável "vencedor" que servirá para definir o vencedor com base na pontuação, mas aqui ela está sendo criada pegando por padrão o primeiro item do array "lista_personagens" como vencedor, para poder ser alterado no futuro
+
+            for (var index = 1; index < tamanho; index++) { // FOR para percorrer a lista começando do segundo personagem inserido 
+                if (lista_personagens[index].pontos > vencedor.pontos) { // Aqui é feita uma verificação onde, se o personagem atual tiver um número maior que o do "vencedor atual"(definido anteriormente como o primeiro da lista)...
+                    vencedor = lista_personagens[index]; // O vencedor vai passar a ser o personagem com a maior pontuação, com base no indice da lista
                 }
             }
 
-            alert(`O personagem vencedor foi o ${vencedor.nome} com ${vencedor.pontos} pontos de batalha!`);
-            lista_personagens = [];
-            lista_pontos = [];
+            alert(`O personagem vencedor foi o ${vencedor.nome} com ${vencedor.pontos} pontos de batalha!`); //Alert mostrando o resultado da disputa
+            lista_personagens = []; //Quando a função é executada, Os vetores são "esvaziados" para o usuario
+            lista_pontos = []; // poder fazer outra disputa com novos personagens, descartando os anteriores
         }
     }
 
